@@ -46,6 +46,11 @@ make check
 * Select in Android Studio's device list
 * Run `main.dart`
 
+### On Chrome Simulator (use at your own risk)
+
+* I've found Chrome to work even though we haven't explicitly indicate that the app can build/run there.
+* major issue though is that Chrome doesn't support mp3 files for audio playback, so while you can run/test the UI, audio won't play.
+
 
 
 ### Formatting
