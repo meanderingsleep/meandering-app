@@ -70,7 +70,7 @@ class _PlayScreenState extends State<PlayScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ElevatedButton(
-              child: const Text('Back'),
+              child: const Text('Home'),
               onPressed: () {
                 // Navigate to the PlayScreen
                 Navigator.push(
@@ -83,7 +83,7 @@ class _PlayScreenState extends State<PlayScreen> {
             Slider(
               value: _position.inSeconds.toDouble(),
               onChanged: (value) async {
-                //await player.seek(Duration(seconds: value.toInt()));
+                await player.seek(Duration(seconds: value.toInt()));
                 setState(() {});
               },
               min: 0,
@@ -94,10 +94,21 @@ class _PlayScreenState extends State<PlayScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(_duration.toString()),
+                Text(_duration.toString().substring(0, _duration.toString().indexOf('.'))),
               ],
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 25),
+            Text(
+              audioUrl.substring(audioUrl.lastIndexOf('/')+1),
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w800,
+                fontFamily: 'Roboto',
+                letterSpacing: 0.5,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
