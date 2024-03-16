@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sleepless_app/app_dependencies/app_dependencies.dart';
@@ -22,7 +23,10 @@ class App extends StatelessWidget {
 
 void main() {
   runApp(Provider(
-    create: (_) => AppDependencies(stub: 'test'),
+    create: (_) => AppDependencies(
+        stub: 'test',
+        player: AudioPlayer(),
+    ),
     child: const App(),
   ));
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleepless_app/home_screen.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class PlayScreen extends StatefulWidget {
   const PlayScreen({super.key});
@@ -10,26 +11,50 @@ class PlayScreen extends StatefulWidget {
 
 class _PlayScreenState extends State<PlayScreen> {
   bool isPlaying = false;
+  late final AudioPlayer player;
 
-  //final String audioUrl = 'https://sleeplesslv.s3.us-east-2.amazonaws.com/sleepless-2024-02-24.mp3';
+  final String audioUrl = 'https://sleeplesslv.s3.us-east-2.amazonaws.com/sleepless-2024-02-24.mp3';
 
-  final Duration _duration = const Duration();
-  final Duration _position = const Duration();
+  Duration _duration = const Duration();
+  Duration _position = const Duration();
 
   @override
   void initState() {
+    initPlayer();
     super.initState();
   }
 
   @override
   void dispose() {
+    player.dispose();
     super.dispose();
+  }
+
+  Future initPlayer() async {
+    player = AudioPlayer();
+
+    // set a callback for changing duration
+    player.onDurationChanged.listen((Duration d) {
+      setState(() => _duration = d);
+    });
+
+    // set a callback for position change
+    player.onPositionChanged.listen((Duration p) {
+      setState(() => _position = p);
+    });
+
+    // set a callback for when audio ends
+    player.onPlayerComplete.listen((_) {
+      setState(() => isPlaying = false);
+    });
   }
 
   void playPause() async {
     if (isPlaying) {
+      player.pause();
       isPlaying = false;
     } else {
+      await player.play(UrlSource(audioUrl));
       isPlaying = true;
     }
     setState(() {});
@@ -78,7 +103,7 @@ class _PlayScreenState extends State<PlayScreen> {
               children: [
                 InkWell(
                   onTap: () {
-                    //player.seek(Duration(seconds: _position.inSeconds - 10));
+                    player.seek(Duration(seconds: _position.inSeconds - 10));
                     setState(() {});
                   },
                   child: Image.asset('assets/icons/rewind.png'),
@@ -95,7 +120,7 @@ class _PlayScreenState extends State<PlayScreen> {
                 const SizedBox(width: 20),
                 InkWell(
                   onTap: () {
-                    //player.seek(Duration(seconds: _position.inSeconds + 10));
+                    player.seek(Duration(seconds: _position.inSeconds + 10));
                     setState(() {});
                   },
                   child: Image.asset('assets/icons/forward.png'),

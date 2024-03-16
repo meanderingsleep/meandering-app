@@ -2,12 +2,15 @@ import 'package:flutter/widgets.dart';
 import 'package:sleepless_app/app_dependencies/app_dependencies.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 final class TestDependencies {
   final String test = 'test';
+  final AudioPlayer player = AudioPlayer();
 
   AppDependencies buildAppDependencies() => AppDependencies(
         stub: 'test',
+        player: player,
       );
 }
 
