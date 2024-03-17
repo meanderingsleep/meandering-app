@@ -39,7 +39,23 @@ make check
 * In Android Studio, select the simulator from the device list next to the run configuration.
 * Run `main.dart`
 
-### On Android or iOS Device
+### On Physical iOS device (e.g. your iPhone)
+
+* Connect device to your computer via USB
+* Select your device in Android Studio's device list
+* Run `main.dart`
+* the Runner scaffolding will get built in Android Studio, then handed off to Xcode for running.
+* the first time you go through this, you'll have to associate your signing/certificate with the project, before the code can run on the device. check the Run output window in Android Studio for the steps to do this, but, they're below as well.
+  * Select the Runner Project
+  * Select the Runner Target
+  * Select "Signging and Capabilities"
+     * Select a team (right now we're using our personal accounts), or Add Account and add your Apple ID (create a developer one if you don't want to use your personal one).
+     * Bundle identifier should be prefilled.
+* manually run the Runner project (Play button top-left window area). you should get an error in XCode about not being able to run, and your device should ask if you want to Trust the developer. you can adjust these settings in Settings->General->VPN Device Management.
+* manually run again and you should be good to go. going forward, you won't have to do all of the project/signing setup/trusting again (unless those settings change).
+  
+
+### On Android
 
 * Configure device for developer mode (see Android/iOS documentation for that)
 * Connect to your computer
