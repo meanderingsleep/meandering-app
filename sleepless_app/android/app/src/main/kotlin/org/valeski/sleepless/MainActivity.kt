@@ -1,4 +1,4 @@
-package io.initialcapacity.weather_app
+package org.valeski.sleepless
 
 import io.flutter.embedding.android.FlutterActivity
 
