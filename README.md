@@ -46,6 +46,7 @@ make check
 * Run `main.dart`
 * the Runner scaffolding will get built in Android Studio, then handed off to Xcode for running.
 * the first time you go through this, you'll have to associate your signing/certificate with the project, before the code can run on the device. check the Run output window in Android Studio for the steps to do this, but, they're below as well.
+  * Update the build configuration via XCode. [here's a general walkthrough on how to do it](https://developer.apple.com/documentation/Xcode/configuring-the-build-settings-of-a-target)
   * Select the Runner Project
   * Select the Runner Target
   * Select "Signging and Capabilities"
