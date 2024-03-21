@@ -11,10 +11,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? _selectedGender = 'male';
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      // No need for an additional `Center` widget here.
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -36,6 +37,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   'assets/images/logo.svg', // Your logo's asset path
                   width: 35, // Set your logo's width
                   height: 35, // Set your logo's height
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CupertinoSlidingSegmentedControl<String>(
+                  children: {
+                    'male': Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                      child: Text('Male',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        decoration: TextDecoration.none,
+                        color: Colors.grey, // This ensures no underline
+                      )),
+                    ),
+                    'female': Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                      child: Text('Female',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        decoration: TextDecoration.none,
+                        color: Colors.grey, // This ensures no underline
+                        // This ensures no underline
+                      )),
+                    ),
+                  },
+                  onValueChanged: (value) {
+                    setState(() {
+                      _selectedGender = value;
+                    });
+                  },
+                  groupValue: _selectedGender,
                 ),
               ),
               Expanded(
