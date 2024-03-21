@@ -14,19 +14,28 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        backgroundColor: CupertinoColors.systemIndigo,
-        child: Center(
+      // No need for an additional `Center` widget here.
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              CupertinoColors.systemIndigo, // Start color
+              Colors.blue, // End color
+            ],
+          ),
+        ),
+        child: SafeArea( // Ensures that content is not obscured by the notch or the status bar
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start, // Aligns the logo to the top of the screen
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 60.0), // Adjust the padding as needed
-                child: Center(
-                  child: SvgPicture.asset(
-                    'assets/images/logo.svg', // Your logo's asset path
-                    width: 35, // Set your logo's width
-                    height: 35, // Set your logo's height
-                  ),
+              Padding(
+                padding: EdgeInsets.only(top: 60.0), // Adjust padding as needed
+                child: SvgPicture.asset(
+                  'assets/images/logo.svg', // Your logo's asset path
+                  width: 35, // Set your logo's width
+                  height: 35, // Set your logo's height
                 ),
               ),
               Expanded(
@@ -44,6 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
