@@ -39,49 +39,49 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 35, // Set your logo's height
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoSlidingSegmentedControl<String>(
-                  children: {
-                    'male': Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                      child: Text('Male',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        decoration: TextDecoration.none,
-                        color: Colors.grey, // This ensures no underline
-                      )),
-                    ),
-                    'female': Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                      child: Text('Female',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        decoration: TextDecoration.none,
-                        color: Colors.grey, // This ensures no underline
-                        // This ensures no underline
-                      )),
-                    ),
-                  },
-                  onValueChanged: (value) {
-                    setState(() {
-                      _selectedGender = value;
-                    });
-                  },
-                  groupValue: _selectedGender,
-                ),
-              ),
               Expanded(
-                child: Center(
-                  child: CupertinoButton(
-                    child: SvgPicture.asset('assets/images/playnightly.svg'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const PlayScreen()),
-                      );
-                    },
-                  ),
+                child: Column( // Wrap your content in another Column widget
+                  children: [
+                    CupertinoSlidingSegmentedControl<String>(
+                      children: {
+                        'male': Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                          child: Text('Male',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                decoration: TextDecoration.none,
+                                color: Colors.grey, // This ensures no underline
+                              )),
+                        ),
+                        'female': Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                          child: Text('Female',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                decoration: TextDecoration.none,
+                                color: Colors.grey, // This ensures no underline
+                              )),
+                        ),
+                      },
+                      onValueChanged: (value) {
+                        setState(() {
+                          _selectedGender = value;
+                        });
+                      },
+                      groupValue: _selectedGender,
+                    ),
+                    Center(
+                      child: CupertinoButton(
+                        child: SvgPicture.asset('assets/images/playnightly.svg'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const PlayScreen()),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
