@@ -29,10 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: SafeArea( // Ensures that content is not obscured by the notch or the status bar
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 60.0), // Adjust padding as needed
+                padding: EdgeInsets.only(top: 20.0), // Adjust padding as needed
                 child: SvgPicture.asset(
                   'assets/images/logo.svg', // Your logo's asset path
                   width: 35, // Set your logo's width
@@ -41,6 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Expanded(
                 child: Column( // Wrap your content in another Column widget
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CupertinoSlidingSegmentedControl<String>(
                       children: {
@@ -70,18 +71,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       groupValue: _selectedGender,
                     ),
-                    Center(
-                      child: CupertinoButton(
-                        child: SvgPicture.asset('assets/images/playnightly.svg'),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const PlayScreen()),
-                          );
-                        },
-                      ),
+                    CupertinoButton(
+                      child: SvgPicture.asset('assets/images/playnightly.svg'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const PlayScreen()),
+                        );
+                      },
                     ),
-                  ],
+                  ], // Children
                 ),
               ),
             ],
@@ -89,5 +88,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-}
+  } // Build
+} // Class end
