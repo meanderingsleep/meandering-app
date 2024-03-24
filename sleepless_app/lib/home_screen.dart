@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 20.0), // Adjust padding as needed
+                padding: const EdgeInsets.only(top: 20.0), // Adjust padding as needed
                 child: SvgPicture.asset(
                   'assets/images/logo.svg', // Your logo's asset path
                   width: 35, // Set your logo's width
@@ -46,10 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CupertinoSlidingSegmentedControl<String>(
-                      children: {
+                      key: const Key('genderSlider'),
+                      children: const {
                         'male': Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                           child: Text('Male',
+                              key: Key('maleKey'),
                               style: TextStyle(
                                 fontSize: 16.0,
                                 decoration: TextDecoration.none,
@@ -57,8 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               )),
                         ),
                         'female': Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                           child: Text('Female',
+                              key: Key('femaleKey'),
                               style: TextStyle(
                                 fontSize: 16.0,
                                 decoration: TextDecoration.none,
