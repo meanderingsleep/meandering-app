@@ -62,85 +62,87 @@ class _PlayScreenState extends State<PlayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              child: const Text('Home'),
-              onPressed: () {
-                // Navigate to the PlayScreen
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 50),
-            Slider(
-              value: _position.inSeconds.toDouble(),
-              onChanged: (value) async {
-                await player.seek(Duration(seconds: value.toInt()));
-                setState(() {});
-              },
-              min: 0,
-              max: _duration.inSeconds.toDouble(),
-              inactiveColor: Colors.grey,
-              activeColor: Colors.deepPurple,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(_duration.toString().substring(0, _duration.toString().indexOf('.'))),
-              ],
-            ),
-            const SizedBox(height: 25),
-            Text(
-              audioUrl.substring(audioUrl.lastIndexOf('/') + 1),
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w800,
-                fontFamily: 'Roboto',
-                letterSpacing: 0.5,
-                fontSize: 20,
-              ),
-            ),
-            const SizedBox(height: 25),
-            Row(
+    return Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                InkWell(
-                  onTap: () {
-                    player.seek(Duration(seconds: _position.inSeconds - 10));
+                ElevatedButton(
+                  child: const Text('Home'),
+                  onPressed: () {
+                    // Navigate to the PlayScreen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    );
+                  },
+                ),
+                const SizedBox(height: 50),
+                Slider(
+                  value: _position.inSeconds.toDouble(),
+                  onChanged: (value) async {
+                    await player.seek(Duration(seconds: value.toInt()));
                     setState(() {});
                   },
-                  child: Image.asset('assets/icons/rewind.png'),
+                  min: 0,
+                  max: _duration.inSeconds.toDouble(),
+                  inactiveColor: Colors.grey,
+                  activeColor: Colors.deepPurple,
                 ),
-                const SizedBox(width: 20),
-                InkWell(
-                  onTap: playPause,
-                  child: Icon(
-                    isPlaying ? Icons.pause_circle : Icons.play_circle,
-                    color: Colors.deepPurple,
-                    size: 100,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(_duration.toString().substring(0, _duration.toString().indexOf('.'))),
+                  ],
+                ),
+                const SizedBox(height: 25),
+                Text(
+                  audioUrl.substring(audioUrl.lastIndexOf('/') + 1),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
+                    fontSize: 20,
                   ),
                 ),
-                const SizedBox(width: 20),
-                InkWell(
-                  onTap: () {
-                    player.seek(Duration(seconds: _position.inSeconds + 10));
-                    setState(() {});
-                  },
-                  child: Image.asset('assets/icons/forward.png'),
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        player.seek(Duration(seconds: _position.inSeconds - 10));
+                        setState(() {});
+                      },
+                      child: Image.asset('assets/icons/rewind.png'),
+                    ),
+                    const SizedBox(width: 20),
+                    InkWell(
+                      onTap: playPause,
+                      child: Icon(
+                        isPlaying ? Icons.pause_circle : Icons.play_circle,
+                        color: Colors.deepPurple,
+                        size: 100,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    InkWell(
+                      onTap: () {
+                        player.seek(Duration(seconds: _position.inSeconds + 10));
+                        setState(() {});
+                      },
+                      child: Image.asset('assets/icons/forward.png'),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
