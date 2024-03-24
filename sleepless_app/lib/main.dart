@@ -24,8 +24,8 @@ class App extends StatelessWidget {
 void main() {
   runApp(Provider(
     create: (_) => AppDependencies(
-        stub: 'test',
-        player: AudioPlayer(),
+      stub: 'test',
+      player: AudioPlayer(),
     ),
     child: const App(),
   ));

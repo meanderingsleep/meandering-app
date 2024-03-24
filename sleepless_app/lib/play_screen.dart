@@ -99,7 +99,7 @@ class _PlayScreenState extends State<PlayScreen> {
             ),
             const SizedBox(height: 25),
             Text(
-              audioUrl.substring(audioUrl.lastIndexOf('/')+1),
+              audioUrl.substring(audioUrl.lastIndexOf('/') + 1),
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w800,

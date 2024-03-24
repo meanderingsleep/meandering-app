@@ -27,7 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        child: SafeArea( // Ensures that content is not obscured by the notch or the status bar
+        child: SafeArea(
+          // Ensures that content is not obscured by the notch or the status bar
           child: Column(
             children: <Widget>[
               Padding(
@@ -39,7 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Expanded(
-                child: Column( // Wrap your content in another Column widget
+                child: Column(
+                  // Wrap your content in another Column widget
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
