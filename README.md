@@ -13,6 +13,13 @@ This is the Sleepless Flutter App.
 * Run ``` make install ``` to make sure flutter dependencies are up-to-date
 * Run ``` flutter doctor ``` to make sure flutter's in good shape.
 
+## Running integration tests
+
+[Integration tests](https://docs.flutter.dev/cookbook/testing/integration/introduction) currently have to be run manually, and with a virtual device running. I've only ever done it from within Android Studio (again, with a virtual device running).
+
+```
+flutter test integration_test/app_test.dart
+```
 
 ## Running checks
 
