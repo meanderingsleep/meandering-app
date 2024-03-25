@@ -4,7 +4,8 @@ import 'package:sleepless_app/home_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class PlayScreen extends StatefulWidget {
-  const PlayScreen({super.key});
+  final String? selectedGender;
+  const PlayScreen({super.key, this.selectedGender});
 
   @override
   State<PlayScreen> createState() => _PlayScreenState();
@@ -14,7 +15,7 @@ class _PlayScreenState extends State<PlayScreen> {
   bool isPlaying = false;
   late final AudioPlayer player;
 
-  final String audioUrl = 'https://sleeplesslv.s3.us-east-2.amazonaws.com/sleepless-2024-02-24.mp3';
+  String audioUrl = '';
 
   Duration _duration = const Duration();
   Duration _position = const Duration();
@@ -33,6 +34,12 @@ class _PlayScreenState extends State<PlayScreen> {
 
   Future initPlayer() async {
     player = AudioPlayer();
+
+    if (widget.selectedGender == 'female') {
+      audioUrl = 'https://youraudio/female-version.mp3'; // Example female audio URL
+    } else if (widget.selectedGender == 'male') {
+      audioUrl = 'https://youraudio/male-version.mp3'; // Example male audio URL
+    }
 
     // set a callback for changing duration
     player.onDurationChanged.listen((Duration d) {

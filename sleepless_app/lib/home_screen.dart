@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const PlayScreen()),
+                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender)), // Modified this line
                         );
                       },
                     ),
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const PlayScreen()),
+                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender)), // Modified this line too
                         );
                       },
                     ),
