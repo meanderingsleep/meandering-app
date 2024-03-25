@@ -45,6 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Text('Voice:',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        decoration: TextDecoration.none,
+                        color: Colors.grey,
+                      )),
                     CupertinoSlidingSegmentedControl<String>(
                       key: const Key('genderSlider'),
                       children: const {
