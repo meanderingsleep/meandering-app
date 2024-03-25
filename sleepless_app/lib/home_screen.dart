@@ -85,6 +85,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                     ),
+                    CupertinoButton(
+                      child: SvgPicture.asset('assets/images/boringweather.svg'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const PlayScreen()),
+                        );
+                      },
+                    ),
                   ], // Children
                 ),
               ),
