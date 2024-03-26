@@ -28,50 +28,51 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         child: SafeArea(
-          // Ensures that content is not obscured by the notch or the status bar
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 20.0), // Adjust padding as needed
+                padding: const EdgeInsets.only(top: 20.0),
                 child: SvgPicture.asset(
-                  'assets/images/logo.svg', // Your logo's asset path
-                  width: 35, // Set your logo's width
-                  height: 35, // Set your logo's height
+                  'assets/images/logo.svg',
+                  width: 35,
+                  height: 35,
                 ),
               ),
               Expanded(
                 child: Column(
-                  // Wrap your content in another Column widget
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('Voice:',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        decoration: TextDecoration.none,
-                        color: Colors.grey,
-                      )),
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text('Voice:',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            decoration: TextDecoration.none,
+                            color: Colors.white,
+                          )),
+                    ),
                     CupertinoSlidingSegmentedControl<String>(
                       key: const Key('genderSlider'),
+                      backgroundColor: Colors.white24, // Semi-transparent background
+                      thumbColor: Colors.white24, // White thumb for better visibility
                       children: const {
                         'male': Padding(
                           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                           child: Text('Male',
-                              key: Key('maleKey'),
                               style: TextStyle(
                                 fontSize: 16.0,
                                 decoration: TextDecoration.none,
-                                color: Colors.grey, // This ensures no underline
+                                color: Colors.white, // Changed to white for better contrast
                               )),
                         ),
                         'female': Padding(
                           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                           child: Text('Female',
-                              key: Key('femaleKey'),
                               style: TextStyle(
                                 fontSize: 16.0,
                                 decoration: TextDecoration.none,
-                                color: Colors.grey, // This ensures no underline
+                                color: Colors.white, // Changed to white for better contrast
                               )),
                         ),
                       },
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender)), // Modified this line
+                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender)),
                         );
                       },
                     ),
@@ -96,11 +97,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender)), // Modified this line too
+                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender)),
                         );
                       },
                     ),
-                  ], // Children
+                  ],
                 ),
               ),
             ],
@@ -108,5 +109,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  } // Build
-} // Class end
+  }
+}
