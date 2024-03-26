@@ -44,46 +44,45 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Text('Voice:',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            decoration: TextDecoration.none,
-                            color: Colors.white,
-                          )),
+                      padding: EdgeInsets.all(15.0),
+                      child: SvgPicture.asset('assets/images/speakingicon.svg')
                     ),
-                    CupertinoSlidingSegmentedControl<String>(
-                      key: const Key('genderSlider'),
-                      backgroundColor: Colors.white24, // Semi-transparent background
-                      thumbColor: Colors.white24, // White thumb for better visibility
-                      children: const {
-                        'male': Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                          child: Text('Male',
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                decoration: TextDecoration.none,
-                                color: Colors.white, // Changed to white for better contrast
-                              )),
-                        ),
-                        'female': Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                          child: Text('Female',
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                decoration: TextDecoration.none,
-                                color: Colors.white, // Changed to white for better contrast
-                              )),
-                        ),
-                      },
-                      onValueChanged: (value) {
-                        setState(() {
-                          _selectedGender = value;
-                        });
-                      },
-                      groupValue: _selectedGender,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 13.0),
+                      child: CupertinoSlidingSegmentedControl<String>(
+                        key: const Key('genderSlider'),
+                        backgroundColor: Colors.white24, // Semi-transparent background
+                        thumbColor: Colors.white24, // White thumb for better visibility
+                        children: const {
+                          'male': Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                            child: Text('Male',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  decoration: TextDecoration.none,
+                                  color: Colors.white, // Changed to white for better contrast
+                                )),
+                          ),
+                          'female': Padding(
+                            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                            child: Text('Female',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  decoration: TextDecoration.none,
+                                  color: Colors.white, // Changed to white for better contrast
+                                )),
+                          ),
+                        },
+                        onValueChanged: (value) {
+                          setState(() {
+                            _selectedGender = value;
+                          });
+                        },
+                        groupValue: _selectedGender,
+                      ),
                     ),
                     CupertinoButton(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                       child: SvgPicture.asset('assets/images/playnightly.svg'),
                       onPressed: () {
                         Navigator.push(
@@ -93,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     CupertinoButton(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                       child: SvgPicture.asset('assets/images/boringweather.svg'),
                       onPressed: () {
                         Navigator.push(
