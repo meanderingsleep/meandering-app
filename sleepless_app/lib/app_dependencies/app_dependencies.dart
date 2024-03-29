@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:provider/provider.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 
 final class AppDependencies {
   final String stub;

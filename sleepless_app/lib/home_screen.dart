@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           'male': Padding(
                             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                             child: Text('Male',
+                                key: Key('maleKey'),
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   decoration: TextDecoration.none,
@@ -66,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           'female': Padding(
                             padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                             child: Text('Female',
+                                key: Key('femaleKey'),
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   decoration: TextDecoration.none,
