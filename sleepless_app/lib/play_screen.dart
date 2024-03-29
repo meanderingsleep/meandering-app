@@ -46,7 +46,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     // Try to load audio from a source and catch any errors.
     try {
       await _player.setAudioSource(AudioSource.uri(Uri.parse(
-          "https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3")));
+          'https://sleeplesslv.s3.us-east-2.amazonaws.com/sleepless-2024-02-24.mp3')));
     } catch (e) {
       print('Error loading audio source: $e');
     }
