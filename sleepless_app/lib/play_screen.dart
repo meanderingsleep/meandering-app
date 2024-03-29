@@ -26,6 +26,13 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+
+    if (widget.selectedGender == 'female') {
+      audioUrl = 'https://youraudio/female-version.mp3'; // Example female audio URL
+    } else if (widget.selectedGender == 'male') {
+      audioUrl = 'https://youraudio/male-version.mp3'; // Example male audio URL
+    }
+    
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
