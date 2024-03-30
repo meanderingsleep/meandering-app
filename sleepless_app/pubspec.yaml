@@ -25,6 +25,7 @@ dependencies:
   animated_segmented_tab_control: ^1.2.1
   path_provider: ^2.1.2
   just_audio: ^0.9.36
+  flutter_dotenv: ^5.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -40,6 +41,7 @@ flutter:
     #- assets/audios/
     - assets/icons/
     - assets/images/
+    - .env
 
   # To add assets to your application, add an assets section, like this:
   # assets:
