@@ -22,6 +22,16 @@ This is the Sleepless Flutter App.
 flutter test integration_test/app_test.dart
 ```
 
+## Hosted Assets for testing
+* Private (Auth headers required) S3 object
+  * s3://sleepless-boulder-co/sleepless-2024-02-24.mp3
+  * https://sleepless-boulder-co.s3.amazonaws.com/sleepless-2024-02-24.mp3
+* Public S3 object
+  * https://sleeplesslv.s3.us-east-2.amazonaws.com/sleepless-2024-02-24.mp3
+ 
+* Public R2 object
+  * https://pub-7d76c823f6a64c759ac65c67758b2530.r2.dev/sleepless-2024-02-24.mp3
+
 ## Running checks
 
 This checks formatting, runs tests and checks for dependency cycles. From the root repository directory where the Makefile sits run the following.
