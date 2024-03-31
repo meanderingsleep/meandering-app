@@ -7,7 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sleepless_app/common.dart';
 import 'package:rxdart/rxdart.dart';
-
+import 'utils.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
@@ -19,7 +20,7 @@ class PlayScreen extends StatefulWidget {
 
 class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   bool isPlaying = false;
-  final _player = AudioPlayer();
+  final _player = AudioPlayer(useProxyForRequestHeaders: false);
 
   String audioUrl = '';
 
@@ -52,8 +53,21 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
         });
     // Try to load audio from a source and catch any errors.
     try {
-      await _player.setAudioSource(AudioSource.uri(Uri.parse(
-          'https://sleeplesslv.s3.us-east-2.amazonaws.com/sleepless-2024-02-24.mp3')));
+        String uri = 'https://sleepless-boulder-co.s3.amazonaws.com/sleepless-2024-02-24.mp3';
+        String s3Uri = 's3://sleepless-boulder-co/sleepless-2024-02-24.mp3';
+        var parts = s3Uri.split('/');
+        String bucket = parts[2];
+        String path = parts[3];
+        var headers = createAWSHTTPAuthHeaders(
+            dotenv.env['AWS_ACCESS_KEY_ID']!,
+            dotenv.env['AWS_SECRET_ACCESS_KEY']!,
+            bucket,
+            path,
+            'GET');
+
+        var source = AudioSource.uri(Uri.parse(uri), headers: headers);
+        await _player.setAudioSource(source,
+            initialPosition: Duration.zero, preload: true);
     } catch (e) {
       print('Error loading audio source: $e');
     }
