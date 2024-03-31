@@ -73,6 +73,7 @@ unlinked_spec.ds
 **/android/gradlew.bat
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
+**/android/**/FlutterMultiDexApplication.java
 **/android/key.properties
 *.jks
 
