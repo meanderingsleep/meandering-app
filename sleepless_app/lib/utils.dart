@@ -2,8 +2,8 @@ import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
-Map<String, String> bucketAndPathFromUrl(String url) {
-  final List<String> parts = url.split('/');
+Map<String, String> bucketAndPathFromUrl(String uri) {
+  final List<String> parts = uri.split('/');
   String bucket = parts[2].split('.')[0];
   String path = parts[3];
   return {

@@ -8,11 +8,10 @@ void main() {
   {
     await dotenv.load();
 
-    String s3Uri = dotenv.env['S3_URI']!; // URI of format s3://bucket_name/object
-    var parts = s3Uri.split('/');
-    String bucket = parts[2];
-    String path = parts[3];
-    var domain = '$bucket.s3.amazonaws.com';
+    String uri = dotenv.env['URI']!;
+    Map<String, String> parts = bucketAndPathFromUrl(uri);
+    String bucket = parts['bucket']!;
+    String path = parts['path']!;
 
     var requestHeaders = createAWSHTTPAuthHeaders(
         dotenv.env['AWS_ACCESS_KEY_ID']!,
@@ -21,7 +20,7 @@ void main() {
         path,
         'HEAD'); // using HEAD request for testing
 
-    var url = Uri.https(domain, path);
+    var url = Uri.https('$bucket.s3.amazonaws.com', path);
     var client = http.Client();
     var response = await client.head(url, headers:requestHeaders); // using HEAD request for testing
     expect(response.statusCode, 200);
