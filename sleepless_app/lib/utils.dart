@@ -2,6 +2,16 @@ import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+Map<String, String> bucketAndPathFromUrl(String url) {
+  final List<String> parts = url.split('/');
+  String bucket = parts[2].split('.')[0];
+  String path = parts[3];
+  return {
+    'bucket': bucket,
+    'path': path,
+  };
+}
+
 Map<String, String> createAWSHTTPAuthHeaders(String key, String secret, String bucket, String path, String method) {
   final now = DateTime.now().toUtc();
   String formattedDate = DateFormat('E, d MMM yyyy HH:mm:ss').format(now) + " +0000";

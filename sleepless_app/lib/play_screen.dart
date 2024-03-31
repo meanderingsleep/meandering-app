@@ -9,6 +9,7 @@ import 'package:sleepless_app/common.dart';
 import 'package:rxdart/rxdart.dart';
 import 'utils.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'dart:convert';
 
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
@@ -23,6 +24,15 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   final _player = AudioPlayer(useProxyForRequestHeaders: false);
 
   String audioUrl = '';
+
+  var resourceItems;
+  Future<void> loadJsonAsset() async {
+    final String jsonString = await rootBundle.loadString('assets/resources.json');
+    final resData = await jsonDecode(jsonString) as Map<String, dynamic>;
+    setState(() {
+      resourceItems = resData;
+    });
+  }
 
   @override
   void initState() {
@@ -53,19 +63,19 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
         });
     // Try to load audio from a source and catch any errors.
     try {
-        String uri = 'https://sleepless-boulder-co.s3.amazonaws.com/sleepless-2024-02-24.mp3';
-        String s3Uri = 's3://sleepless-boulder-co/sleepless-2024-02-24.mp3';
-        var parts = s3Uri.split('/');
-        String bucket = parts[2];
-        String path = parts[3];
+        await loadJsonAsset();
+
+        String url = resourceItems['storyUrl'];
+        final Map<String, String> components = bucketAndPathFromUrl(url);
+        
         var headers = createAWSHTTPAuthHeaders(
             dotenv.env['AWS_ACCESS_KEY_ID']!,
             dotenv.env['AWS_SECRET_ACCESS_KEY']!,
-            bucket,
-            path,
+            components['bucket']!,
+            components['path']!,
             'GET');
 
-        var source = AudioSource.uri(Uri.parse(uri), headers: headers);
+        var source = AudioSource.uri(Uri.parse(url), headers: headers);
         await _player.setAudioSource(source,
             initialPosition: Duration.zero, preload: true);
     } catch (e) {
