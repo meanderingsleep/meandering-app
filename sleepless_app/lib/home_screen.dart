@@ -87,9 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                       child: SvgPicture.asset('assets/images/playnightly.svg'),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender)),
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => PlayScreen(selectedGender: _selectedGender),
                         );
                       },
                     ),
@@ -97,9 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                       child: SvgPicture.asset('assets/images/boringweather.svg'),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender)),
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => PlayScreen(selectedGender: _selectedGender),
                         );
                       },
                     ),

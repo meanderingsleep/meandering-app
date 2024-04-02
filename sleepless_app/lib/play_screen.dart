@@ -115,7 +115,17 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SafeArea(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.deepPurple,
+                Colors.indigo,
+              ]
+            )
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -168,6 +178,7 @@ class ControlButtons extends StatelessWidget {
       children: [
         // Opens volume slider dialog
         IconButton(
+          color: Colors.white,
           icon: const Icon(Icons.volume_up),
           onPressed: () {
             showSliderDialog(
@@ -203,18 +214,21 @@ class ControlButtons extends StatelessWidget {
               );
             } else if (playing != true) {
               return IconButton(
+                color: Colors.white,
                 icon: const Icon(Icons.play_arrow),
                 iconSize: 64.0,
                 onPressed: player.play,
               );
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
+                color: Colors.white,
                 icon: const Icon(Icons.pause),
                 iconSize: 64.0,
                 onPressed: player.pause,
               );
             } else {
               return IconButton(
+                color: Colors.white,
                 icon: const Icon(Icons.replay),
                 iconSize: 64.0,
                 onPressed: () => player.seek(Duration.zero),
@@ -227,7 +241,11 @@ class ControlButtons extends StatelessWidget {
           stream: player.speedStream,
           builder: (context, snapshot) => IconButton(
             icon: Text("${snapshot.data?.toStringAsFixed(1)}x",
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white
+                ),
+            ),
             onPressed: () {
               showSliderDialog(
                 context: context,
