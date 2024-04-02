@@ -88,6 +88,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SvgPicture.asset('assets/images/playnightly.svg'),
                       onPressed: () {
                         showModalBottomSheet(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(25),
+                            ),
+                          ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
                           context: context,
                           builder: (context) => PlayScreen(selectedGender: _selectedGender),
                         );
@@ -98,6 +104,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SvgPicture.asset('assets/images/boringweather.svg'),
                       onPressed: () {
                         showModalBottomSheet(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(25),
+                            ),
+                          ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
                           context: context,
                           builder: (context) => PlayScreen(selectedGender: _selectedGender),
                         );
