@@ -95,7 +95,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           context: context,
-                          builder: (context) => PlayScreen(selectedGender: _selectedGender),
+                          isScrollControlled: true,
+                          builder: (BuildContext context) {
+                            final double screenHeight = MediaQuery.of(context).size.height;
+                            final double appBarHeight = 80.0; // Standard app bar height. Adjust if yours is different.
+                            final double bottomSheetHeight = screenHeight - appBarHeight;
+
+                            return Container(
+                              height: bottomSheetHeight, // Use the calculated height here
+                              child: PlayScreen(selectedGender: _selectedGender),
+                            );
+                          },
                         );
                       },
                     ),
@@ -111,7 +121,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           context: context,
-                          builder: (context) => PlayScreen(selectedGender: _selectedGender),
+                          isScrollControlled: true,
+                          builder: (BuildContext context) {
+                            final double screenHeight = MediaQuery.of(context).size.height;
+                            final double appBarHeight = 80.0; // Standard app bar height. Adjust if yours is different.
+                            final double bottomSheetHeight = screenHeight - appBarHeight;
+
+                            return Container(
+                              height: bottomSheetHeight, // Use the calculated height here
+                              child: PlayScreen(selectedGender: _selectedGender),
+                            );
+                          },
                         );
                       },
                     ),
