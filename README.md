@@ -72,6 +72,26 @@ make check
      * Bundle identifier should be prefilled.
 * manually run the Runner project (Play button top-left window area). you should get an error in XCode about not being able to run, and your device should ask if you want to Trust the developer. you can adjust these settings in Settings->General->VPN Device Management.
 * manually run again and you should be good to go. going forward, you won't have to do all of the project/signing setup/trusting again (unless those settings change).
+* if you run into issues with macos not letting you run iproxy, idevicesyslog, and maybe others, checkout how to manually authorize them at https://medium.com/p/7aa1f89f61aa . relevant example commands below from the article. you can find your Flutter path by running `flutter doctor -v`
+
+```
+# iproxy
+sudo xattr -d com.apple.quarantine "Flutter_Path/bin/cache/artifacts/usbmuxd/iproxy"
+# idevicesyslog
+sudo xattr -d com.apple.quarantine "Flutter_Path/bin/cache/artifacts/libimobiledevice/idevicesyslog"
+# Dart
+sudo xattr -d com.apple.quarantine "Flutter_Path/bin/cache/dart-sdk/bin/dart"
+# idevice_id
+sudo xattr -d com.apple.quarantine "Flutter_Path/bin/cache/artifacts/libimobiledevice/idevice_id"
+# ideviceinfo
+sudo xattr -d com.apple.quarantine "Flutter_Path/bin/cache/artifacts/libimobiledevice/ideviceinfo"
+# idevicename
+sudo xattr -d com.apple.quarantine "Flutter_Path/bin/cache/artifacts/libimobiledevice/idevicename"
+# idevicescreenshot
+sudo xattr -d com.apple.quarantine "Flutter_Path/bin/cache/artifacts/libimobiledevice/idevicescreenshot"
+
+etc
+```
   
 
 ### On Android
