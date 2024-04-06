@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sleepless_app/app_dependencies/app_dependencies.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sleepless_app/home_screen.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -31,6 +32,12 @@ Future main() async {
     ),
     child: const App(),
   ));
+
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
 
   runApp(const App());
 }

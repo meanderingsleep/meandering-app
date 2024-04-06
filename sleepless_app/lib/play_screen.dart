@@ -10,7 +10,9 @@ import 'package:rxdart/rxdart.dart';
 import 'utils.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
+import 'package:just_audio_background/just_audio_background.dart';
 
+// Defines playscreen class, suitable to state changes as it inherits statefulw
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
   const PlayScreen({super.key, this.selectedGender});
@@ -75,7 +77,18 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             components['path']!,
             'GET');
 
-        var source = AudioSource.uri(Uri.parse(url), headers: headers);
+        var source = AudioSource.uri(
+          Uri.parse(url),
+          headers: headers,
+          tag: const MediaItem(
+            // Specify a unique ID for each media item:
+            id: '1',
+            // Metadata to display in the notification:
+            album: "Meandering audio",
+            title: "Sleep story",
+          ),
+        );
+
         await _player.setAudioSource(source,
             initialPosition: Duration.zero, preload: true);
     } catch (e) {
@@ -90,15 +103,15 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
-      // Release the player's resources when not in use. We use "stop" so that
-      // if the app resumes later, it will still remember what position to
-      // resume from.
-      _player.stop();
-    }
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   if (state == AppLifecycleState.paused) {
+  //     // Release the player's resources when not in use. We use "stop" so that
+  //     // if the app resumes later, it will still remember what position to
+  //     // resume from.
+  //     _player.stop();
+  //   }
+  // }
 
   /// Collects the data useful for displaying in a seek bar, using a handy
   /// feature of rx_dart to combine the 3 streams of interest into one.
