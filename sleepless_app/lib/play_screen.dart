@@ -15,7 +15,8 @@ import 'package:just_audio_background/just_audio_background.dart';
 // Defines playscreen class, suitable to state changes as it inherits statefulw
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
-  const PlayScreen({super.key, this.selectedGender});
+  final String? selectedStory;
+  const PlayScreen({super.key, this.selectedGender, this.selectedStory});
 
   @override
   State<PlayScreen> createState() => _PlayScreenState();
@@ -39,11 +40,19 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-
-    if (widget.selectedGender == 'female') {
-      audioUrl = 'https://youraudio/female-version.mp3'; // Example female audio URL
-    } else if (widget.selectedGender == 'male') {
-      audioUrl = 'https://youraudio/male-version.mp3'; // Example male audio URL
+    if (widget.selectedStory == 'classic') {
+      if (widget.selectedGender == 'female') {
+        audioUrl = 'https://youraudio/female-version-classic.mp3'; // Example female audio URL
+      } else if (widget.selectedGender == 'male') {
+        audioUrl = 'https://youraudio/male-version-classic.mp3'; // Example male audio URL
+      }
+    }
+    else if (widget.selectedStory == 'weather') {
+      if (widget.selectedGender == 'female') {
+        audioUrl = 'https://youraudio/female-version-weather.mp3'; // Example female audio URL
+      } else if (widget.selectedGender == 'male') {
+        audioUrl = 'https://youraudio/male-version-weather.mp3'; // Example male audio URL
+      }
     }
     
     ambiguate(WidgetsBinding.instance)!.addObserver(this);

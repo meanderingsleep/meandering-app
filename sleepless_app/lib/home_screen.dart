@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String? _selectedGender = 'male';
+  String? _selectedStory = 'classic';
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                       child: SvgPicture.asset('assets/images/playnightly.svg'),
                       onPressed: () {
+                        _selectedStory = 'classic';
                         showModalBottomSheet(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
@@ -103,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             return Container(
                               height: bottomSheetHeight, // Use the calculated height here
-                              child: PlayScreen(selectedGender: _selectedGender),
+                              child: PlayScreen(selectedGender: _selectedGender, selectedStory: _selectedStory),
                             );
                           },
                         );
@@ -113,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                       child: SvgPicture.asset('assets/images/boringweather.svg'),
                       onPressed: () {
+                        _selectedStory = 'weather';
                         showModalBottomSheet(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
@@ -129,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             return Container(
                               height: bottomSheetHeight, // Use the calculated height here
-                              child: PlayScreen(selectedGender: _selectedGender),
+                              child: PlayScreen(selectedGender: _selectedGender, selectedStory: _selectedStory),
                             );
                           },
                         );
