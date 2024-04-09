@@ -5,18 +5,21 @@ import 'package:sleepless_app/app_dependencies/app_dependencies.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sleepless_app/home_screen.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:flutter/cupertino.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const CupertinoApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+        DefaultMaterialLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+      ],
       title: 'Sleepless',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: const HomeScreen(),
     );
   }
