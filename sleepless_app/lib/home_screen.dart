@@ -90,25 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SvgPicture.asset('assets/images/playnightly.svg'),
                       onPressed: () {
                         _selectedStory = 'classic';
-                        showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(25),
-                            ),
-                          ),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (BuildContext context) {
-                            final double screenHeight = MediaQuery.of(context).size.height;
-                            final double appBarHeight = 80.0; // Standard app bar height. Adjust if yours is different.
-                            final double bottomSheetHeight = screenHeight - appBarHeight;
-
-                            return Container(
-                              height: bottomSheetHeight, // Use the calculated height here
-                              child: PlayScreen(selectedGender: _selectedGender, selectedStory: _selectedStory),
-                            );
-                          },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender, selectedStory: _selectedStory)),
                         );
                       },
                     ),
@@ -117,25 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SvgPicture.asset('assets/images/boringweather.svg'),
                       onPressed: () {
                         _selectedStory = 'weather';
-                        showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(25),
-                            ),
-                          ),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (BuildContext context) {
-                            final double screenHeight = MediaQuery.of(context).size.height;
-                            final double appBarHeight = 80.0; // Standard app bar height. Adjust if yours is different.
-                            final double bottomSheetHeight = screenHeight - appBarHeight;
-
-                            return Container(
-                              height: bottomSheetHeight, // Use the calculated height here
-                              child: PlayScreen(selectedGender: _selectedGender, selectedStory: _selectedStory),
-                            );
-                          },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender, selectedStory: _selectedStory)),
                         );
                       },
                     ),

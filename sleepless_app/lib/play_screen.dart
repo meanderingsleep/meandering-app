@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sleepless_app/home_screen.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +23,7 @@ class PlayScreen extends StatefulWidget {
 
 class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   bool isPlaying = false;
-  final _player = AudioPlayer(useProxyForRequestHeaders: false);
+  late AudioPlayer _player;
 
   String audioUrl = '';
 
@@ -40,6 +39,8 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    _player = AudioPlayer(useProxyForRequestHeaders: false);
+
     if (widget.selectedStory == 'classic') {
       if (widget.selectedGender == 'female') {
         audioUrl = 'https://youraudio/female-version-classic.mp3'; // Example female audio URL
@@ -155,11 +156,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
               ElevatedButton(
                 child: const Text('Home'),
                 onPressed: () {
-                  // Navigate to the PlayScreen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
-                  );
+                  Navigator.pop(context);
                 },
               ),
               // Display play/pause button and volume/speed sliders.
