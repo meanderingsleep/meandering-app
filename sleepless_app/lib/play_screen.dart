@@ -113,16 +113,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   if (state == AppLifecycleState.paused) {
-  //     // Release the player's resources when not in use. We use "stop" so that
-  //     // if the app resumes later, it will still remember what position to
-  //     // resume from.
-  //     _player.stop();
-  //   }
-  // }
-
   /// Collects the data useful for displaying in a seek bar, using a handy
   /// feature of rx_dart to combine the 3 streams of interest into one.
   Stream<PositionData> get _positionDataStream =>
