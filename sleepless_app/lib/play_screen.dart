@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
@@ -100,7 +101,9 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
         await _player.setAudioSource(source,
             initialPosition: Duration.zero, preload: true);
     } catch (e) {
-      print('Error loading audio source: $e');
+      if (kDebugMode) {
+        print('Error loading audio source: $e');
+      }
     }
   }
 
