@@ -39,9 +39,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     super.initState();
     _player = AudioPlayer(useProxyForRequestHeaders: false);
 
-    String baseAudioUrl = 'https://audio/';
-    String version = '${widget.selectedGender}-version';
-    audioUrl = '${baseAudioUrl}${version}-${widget.selectedStory}.mp3';
+    audioUrl = 'https://audio/${widget.selectedGender}-${widget.selectedStory}.mp3';
 
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -134,7 +132,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(audioUrl),
               ElevatedButton(
                 child: const Text('Home'),
                 onPressed: () {
