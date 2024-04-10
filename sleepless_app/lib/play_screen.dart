@@ -10,7 +10,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
 import 'package:just_audio_background/just_audio_background.dart';
 
-// Defines playscreen class, suitable to state changes as it inherits statefulw
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
   final String? selectedStory;
@@ -26,7 +25,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 
   String audioUrl = '';
 
-  var resourceItems;
+  Map<String, dynamic> resourceItems = {};
   Future<void> loadJsonAsset() async {
     final String jsonString = await rootBundle.loadString('assets/resources.json');
     final resData = await jsonDecode(jsonString) as Map<String, dynamic>;
@@ -70,23 +69,25 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     // Listen to errors during playback.
     _player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {
-          print('A stream error occurred: $e');
+          if (kDebugMode) {
+            print('A stream error occurred: $e');
+          }
         });
     // Try to load audio from a source and catch any errors.
     try {
         await loadJsonAsset();
 
-        String url = resourceItems['storyUrl'];
+        final String url = resourceItems['storyUrl'];
         final Map<String, String> components = bucketAndPathFromUrl(url);
         
-        var headers = createAWSHTTPAuthHeaders(
+        final headers = createAWSHTTPAuthHeaders(
             dotenv.env['AWS_ACCESS_KEY_ID']!,
             dotenv.env['AWS_SECRET_ACCESS_KEY']!,
             components['bucket']!,
             components['path']!,
             'GET');
 
-        var source = AudioSource.uri(
+        final source = AudioSource.uri(
           Uri.parse(url),
           headers: headers,
           tag: const MediaItem(
@@ -250,7 +251,7 @@ class ControlButtons extends StatelessWidget {
         StreamBuilder<double>(
           stream: player.speedStream,
           builder: (context, snapshot) => IconButton(
-            icon: Text("${snapshot.data?.toStringAsFixed(1)}x",
+            icon: Text('${snapshot.data?.toStringAsFixed(1)}x',
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white
