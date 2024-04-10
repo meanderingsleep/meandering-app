@@ -53,8 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.only(bottom: 13.0),
                       child: CupertinoSlidingSegmentedControl<String>(
                         key: const Key('genderSlider'),
-                        backgroundColor: Colors.white24, // Semi-transparent background
-                        thumbColor: Colors.white24, // White thumb for better visibility
+                        backgroundColor: Colors.white10, // Semi-transparent background
+                        thumbColor: Colors.white30, // White thumb for better visibility
                         children: const {
                           'male': Padding(
                             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
