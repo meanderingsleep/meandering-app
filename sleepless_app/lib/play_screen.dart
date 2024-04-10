@@ -39,21 +39,10 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     super.initState();
     _player = AudioPlayer(useProxyForRequestHeaders: false);
 
-    if (widget.selectedStory == 'classic') {
-      if (widget.selectedGender == 'female') {
-        audioUrl = 'https://youraudio/female-version-classic.mp3'; // Example female audio URL
-      } else if (widget.selectedGender == 'male') {
-        audioUrl = 'https://youraudio/male-version-classic.mp3'; // Example male audio URL
-      }
-    }
-    else if (widget.selectedStory == 'weather') {
-      if (widget.selectedGender == 'female') {
-        audioUrl = 'https://youraudio/female-version-weather.mp3'; // Example female audio URL
-      } else if (widget.selectedGender == 'male') {
-        audioUrl = 'https://youraudio/male-version-weather.mp3'; // Example male audio URL
-      }
-    }
-    
+    String baseAudioUrl = 'https://audio/';
+    String version = '${widget.selectedGender}-version';
+    audioUrl = '${baseAudioUrl}${version}-${widget.selectedStory}.mp3';
+
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
@@ -145,6 +134,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(audioUrl),
               ElevatedButton(
                 child: const Text('Home'),
                 onPressed: () {
