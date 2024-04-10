@@ -18,11 +18,11 @@ Map<String, String> createAWSHTTPAuthHeaders(String key, String secret, String b
   String stringToSign = "$method\n\n\n$formattedDate\n/$bucket/$path";
   var bytes = utf8.encode(stringToSign);
 
-  var hmacSha256 = Hmac(sha1, utf8.encode(secret));
-  String signature = base64.encode(hmacSha256.convert(bytes).bytes);
-  String authorization = 'AWS ' + key +':$signature';
+  final hmacSha256 = Hmac(sha1, utf8.encode(secret));
+  final String signature = base64.encode(hmacSha256.convert(bytes).bytes);
+  final String authorization = 'AWS ' + key +':$signature';
 
-  Map<String, String> requestHeaders = {
+  final Map<String, String> requestHeaders = {
     'Date': formattedDate,
     'Authorization': authorization,
   };

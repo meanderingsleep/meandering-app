@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:sleepless_app/common.dart';
 import 'package:rxdart/rxdart.dart';
 import 'utils.dart';
@@ -94,8 +92,8 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             // Specify a unique ID for each media item:
             id: '1',
             // Metadata to display in the notification:
-            album: "Meandering audio",
-            title: "Sleep story",
+            album: 'Meandering audio',
+            title: 'Sleep story',
           ),
         );
 
@@ -129,7 +127,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -178,7 +176,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 class ControlButtons extends StatelessWidget {
   final AudioPlayer player;
 
-  const ControlButtons(this.player, {Key? key}) : super(key: key);
+  const ControlButtons(this.player, {super.key});
 
   @override
   Widget build(BuildContext context) {

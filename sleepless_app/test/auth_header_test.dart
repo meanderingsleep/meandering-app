@@ -8,21 +8,21 @@ void main() {
   {
     await dotenv.load();
 
-    String uri = dotenv.env['URI']!;
-    Map<String, String> parts = bucketAndPathFromUrl(uri);
-    String bucket = parts['bucket']!;
-    String path = parts['path']!;
+    final String uri = dotenv.env['URI']!;
+    final Map<String, String> parts = bucketAndPathFromUrl(uri);
+    final String bucket = parts['bucket']!;
+    final String path = parts['path']!;
 
-    var requestHeaders = createAWSHTTPAuthHeaders(
+    final requestHeaders = createAWSHTTPAuthHeaders(
         dotenv.env['AWS_ACCESS_KEY_ID']!,
         dotenv.env['AWS_SECRET_ACCESS_KEY']!,
         bucket,
         path,
         'HEAD'); // using HEAD request for testing
 
-    var url = Uri.https('$bucket.s3.amazonaws.com', path);
-    var client = http.Client();
-    var response = await client.head(url, headers:requestHeaders); // using HEAD request for testing
+    final url = Uri.https('$bucket.s3.amazonaws.com', path);
+    final client = http.Client();
+    final response = await client.head(url, headers:requestHeaders); // using HEAD request for testing
     expect(response.statusCode, 200);
   });
 }

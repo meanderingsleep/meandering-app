@@ -16,6 +16,7 @@ dependencies:
       url: https://github.com/dam5s/cyclic_dependency_checks.git
       ref: release/0.1.0
 
+  crypto:
   cupertino_icons: ^1.0.2
   http: ^1.2.1
   logger: ^2.1.0
