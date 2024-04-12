@@ -39,8 +39,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     super.initState();
     _player = AudioPlayer(useProxyForRequestHeaders: false);
 
-    audioUrl = 'https://audio/${widget.selectedGender}-${widget.selectedStory}.mp3';
-
+    audioUrl = 'https://sleepless-boulder-co.s3.amazonaws.com/${widget.selectedStory}_${widget.selectedGender}.mp3';
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
@@ -64,8 +63,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     try {
         await loadJsonAsset();
 
-        final String url = resourceItems['storyUrl'];
-        final Map<String, String> components = bucketAndPathFromUrl(url);
+        final Map<String, String> components = bucketAndPathFromUrl(audioUrl);
         
         final headers = createAWSHTTPAuthHeaders(
             dotenv.env['AWS_ACCESS_KEY_ID']!,
@@ -74,8 +72,8 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             components['path']!,
             'GET');
 
-        final source = AudioSource.uri(
-          Uri.parse(url),
+          final source = AudioSource.uri(
+          Uri.parse(audioUrl),
           headers: headers,
           tag: const MediaItem(
             // Specify a unique ID for each media item:
@@ -132,6 +130,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(audioUrl),
               ElevatedButton(
                 child: const Text('Home'),
                 onPressed: () {
