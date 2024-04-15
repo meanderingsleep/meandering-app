@@ -10,7 +10,7 @@ This is the Sleepless Flutter App.
 * Install [Android Studio](https://developer.android.com/studio) with Flutter and Dart plugins
 * Install [XCode](https://developer.apple.com/xcode/) for iOS dev
 * Create a new project for the app in Android Studio. Do this via File->Open and open the root directory of the project, 'sleepless_app/', which is one level deeper than the repository directory.
-* Create a .env file at root of the project and include your AWS key info: AWS_SECRET_ACCESS_KEY= and AWS_ACCESS_KEY_ID= and URI= (these are needed to run tests)
+* Create a .env file at root of the project and include your AWS key info: AWS_SECRET_ACCESS_KEY= and AWS_ACCESS_KEY_ID= and URI=(example format: URI=https://BUCKET-NAME.s3.amazonaws.com/TEST.mp3) (these are needed to run tests)
 * Run ``` make install ``` to make sure flutter dependencies are up-to-date
 * Run ``` flutter doctor ``` to make sure flutter's in good shape.
 
