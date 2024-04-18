@@ -39,7 +39,8 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     super.initState();
     _player = AudioPlayer(useProxyForRequestHeaders: false);
 
-    audioUrl = 'https://sleepless-boulder-co.s3.amazonaws.com/${widget.selectedStory}_${widget.selectedGender}.mp3';
+    final day = getDayOfWeekString(DateTime.now());
+    audioUrl = 'https://sleepless-boulder-co.s3.amazonaws.com/${day}_${widget.selectedStory}_${widget.selectedGender}.mp3';
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
