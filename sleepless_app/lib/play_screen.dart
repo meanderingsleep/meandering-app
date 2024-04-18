@@ -6,9 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:sleepless_app/common.dart';
 import 'package:rxdart/rxdart.dart';
 import 'utils.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
@@ -37,10 +37,10 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    _player = AudioPlayer(useProxyForRequestHeaders: false);
+    _player = AudioPlayer();
 
     final day = getDayOfWeekString(DateTime.now());
-    audioUrl = 'https://sleepless-boulder-co.s3.amazonaws.com/${day}_${widget.selectedStory}_${widget.selectedGender}.mp3';
+    audioUrl = 'https://${dotenv.env['S3_BUCKET']!}.s3.amazonaws.com/${day}_${widget.selectedStory}_${widget.selectedGender}.mp3';
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
@@ -64,18 +64,8 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     try {
         await loadJsonAsset();
 
-        final Map<String, String> components = bucketAndPathFromVirtualizedHostURL(audioUrl);
-        
-        final headers = createAWSHTTPAuthHeaders(
-            dotenv.env['AWS_ACCESS_KEY_ID']!,
-            dotenv.env['AWS_SECRET_ACCESS_KEY']!,
-            components['bucket']!,
-            components['path']!,
-            'GET');
-
           final source = AudioSource.uri(
           Uri.parse(audioUrl),
-          headers: headers,
           tag: const MediaItem(
             // Specify a unique ID for each media item:
             id: '1',
