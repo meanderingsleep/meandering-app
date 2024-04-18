@@ -63,7 +63,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     try {
         await loadJsonAsset();
 
-        final Map<String, String> components = bucketAndPathFromUrl(audioUrl);
+        final Map<String, String> components = bucketAndPathFromVirtualizedHostURL(audioUrl);
         
         final headers = createAWSHTTPAuthHeaders(
             dotenv.env['AWS_ACCESS_KEY_ID']!,

@@ -4,12 +4,27 @@ import 'package:http/http.dart' as http;
 import 'package:sleepless_app/utils.dart';
 
 void main() {
-  test('Test AWS s3 authorization required access', () async
+  test('S3 bucket restricted', () async
   {
     await dotenv.load();
 
     final String uri = dotenv.env['URI']!;
-    final Map<String, String> parts = bucketAndPathFromUrl(uri);
+    final Map<String, String> parts = bucketAndPathFromVirtualizedHostURL(uri);
+    final String bucket = parts['bucket']!;
+    final String path = parts['path']!;
+
+    final url = Uri.https('$bucket.s3.amazonaws.com', path);
+    final client = http.Client();
+    final response = await client.head(url); // using HEAD request for testing
+    expect(response.statusCode, 403);
+  });
+
+  test('S3 bucket authorization header', () async
+  {
+    await dotenv.load();
+
+    final String uri = dotenv.env['URI']!;
+    final Map<String, String> parts = bucketAndPathFromVirtualizedHostURL(uri);
     final String bucket = parts['bucket']!;
     final String path = parts['path']!;
 
