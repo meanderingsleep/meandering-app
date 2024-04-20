@@ -25,6 +25,9 @@ dependencies:
   just_audio: ^0.9.37
   flutter_dotenv: ^5.1.0
   just_audio_background: ^0.0.1-beta.11
+  firebase_core: ^2.30.0
+  firebase_analytics: ^10.10.2
+  firebase_crashlytics: ^3.5.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
