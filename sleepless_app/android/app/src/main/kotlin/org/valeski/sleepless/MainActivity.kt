@@ -1,4 +1,4 @@
-package org.valeski.sleepless
+package net.coventry.sleepless
 
 import io.flutter.embedding.android.FlutterActivity
 

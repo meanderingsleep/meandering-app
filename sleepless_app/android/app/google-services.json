@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:186187902593:android:a25689846ccf86cf01a780",
+        "android_client_info": {
+          "package_name": "net.coventry.sleepless"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWMb2jLfgDuZc_BW-xN3mB1Jh_gfQqcVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:186187902593:android:899b5cda7a9dc0b601a780",
         "android_client_info": {
           "package_name": "org.valeski.sleepless"

@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCWMb2jLfgDuZc_BW-xN3mB1Jh_gfQqcVs',
-    appId: '1:186187902593:android:899b5cda7a9dc0b601a780',
+    appId: '1:186187902593:android:a25689846ccf86cf01a780',
     messagingSenderId: '186187902593',
     projectId: 'sleepless-c0c4c',
     storageBucket: 'sleepless-c0c4c.appspot.com',
@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAUXv16fM6OHlXnHWG22-TIawm8Ec6R8jI',
-    appId: '1:186187902593:ios:b2975e894c7b976f01a780',
+    appId: '1:186187902593:ios:fab23460bb189b1601a780',
     messagingSenderId: '186187902593',
     projectId: 'sleepless-c0c4c',
     storageBucket: 'sleepless-c0c4c.appspot.com',
-    iosBundleId: 'org.valeski.sleepless',
+    iosBundleId: 'net.coventry.sleepless',
   );
 
 }
