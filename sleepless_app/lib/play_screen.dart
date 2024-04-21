@@ -9,7 +9,6 @@ import 'utils.dart';
 import 'dart:convert';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter/cupertino.dart';
 
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
@@ -113,8 +112,8 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Colors.deepPurple,
-                Colors.indigo,
+                Color(0xFF3E3A6D),  // A darker indigo shade
+                Color(0xFF5B3758),
               ]
             )
           ),
@@ -127,7 +126,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
                 child: const Text('Home'),
                 style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    backgroundColor: MaterialStateProperty.all<Color>(CupertinoColors.systemIndigo),
+                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3E3A6D)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
