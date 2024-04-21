@@ -24,8 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              CupertinoColors.systemPurple, // Start color
-              CupertinoColors.systemIndigo, // End color
+              Color(0xFF3E3A6D),  // A darker indigo shade
+              Color(0xFF5B3758),
             ],
           ),
         ),
