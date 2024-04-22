@@ -107,16 +107,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF3E3A6D),  // A darker indigo shade
-                Color(0xFF5B3758),
-              ]
-            )
-          ),
+          decoration: screenDecoration,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

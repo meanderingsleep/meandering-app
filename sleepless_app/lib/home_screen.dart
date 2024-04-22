@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import "common.dart";
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sleepless_app/play_screen.dart';
 
@@ -19,16 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return CupertinoPageScaffold(
       child: Container(
         constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF3E3A6D),  // A darker indigo shade
-              Color(0xFF5B3758),
-            ],
-          ),
-        ),
+        decoration: screenDecoration,
         child: SafeArea(
           child: Column(
             children: <Widget>[

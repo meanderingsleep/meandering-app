@@ -3,6 +3,17 @@ import 'package:flutter/material.dart';
 
 T? ambiguate<T>(T? value) => value;
 
+const screenDecoration = BoxDecoration(
+  gradient: LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFF3E3A6D),  // A darker indigo shade
+      Color(0xFF5B3758),
+      ]
+    )
+);
+
 class SeekBar extends StatefulWidget {
   final Duration duration;
   final Duration position;
