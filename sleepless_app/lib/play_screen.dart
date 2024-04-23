@@ -106,6 +106,16 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        extendBodyBehindAppBar: true, // This extends the body to be behind the AppBar
+        appBar: AppBar(
+          backgroundColor: Colors.transparent, // Set background color to transparent
+          elevation: 0, // Remove shadow
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white), // Set the back arrow icon
+            onPressed: () => Navigator.of(context).pop(), // Defines the action on press
+          ),
+          centerTitle: true,
+        ),
         body: Container(
           decoration: screenDecoration,
           child: Column(
@@ -113,21 +123,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(audioUrl),
-              ElevatedButton(
-                child: const Text('Home'),
-                style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF3E3A6D)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                        )
-                    )
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
               // Display play/pause button and volume/speed sliders.
               ControlButtons(_player),
               // Display seek bar. Using StreamBuilder, this widget rebuilds
