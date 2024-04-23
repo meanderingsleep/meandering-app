@@ -18,20 +18,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: SizedBox (
+          width: 150,
+          height: 60,
+          child: SvgPicture.asset(
+            'assets/images/logo.svg',
+            fit: BoxFit.contain,
+          ),
+        ),
+          backgroundColor: Colors.transparent
+      ),
       child: Container(
         constraints: const BoxConstraints.expand(),
         decoration: screenDecoration,
         child: SafeArea(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: SvgPicture.asset(
-                  'assets/images/logo.svg',
-                  width: 35,
-                  height: 35,
-                ),
-              ),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
