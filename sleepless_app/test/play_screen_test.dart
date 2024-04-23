@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sleepless_app/play_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/material.dart';
 
 void main() {
 
@@ -10,8 +11,8 @@ void main() {
 
     await tester.pumpWidget(PlayScreen(key: UniqueKey()));
 
-    final mFinder = find.text('Home');
+    final backButtonFinder = find.byIcon(Icons.arrow_back);
 
-    expect(mFinder, findsOneWidget);
+    expect(backButtonFinder, findsOneWidget);
   });
 }
