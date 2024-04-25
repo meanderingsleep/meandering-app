@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 key: Key('maleKey'),
                                 style: TextStyle(
                                   fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.none,
                                   color: Colors.white, // Changed to white for better contrast
                                 )),
@@ -67,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 key: Key('femaleKey'),
                                 style: TextStyle(
                                   fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.none,
                                   color: Colors.white, // Changed to white for better contrast
                                 )),
@@ -81,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     CupertinoButton(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 1.0),
                       child: SvgPicture.asset('assets/images/playnightly.svg'),
                       onPressed: () {
                         _selectedStory = 'classic';
@@ -92,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     CupertinoButton(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 1.0),
                       child: SvgPicture.asset('assets/images/boringweather.svg'),
                       onPressed: () {
                         _selectedStory = 'weather';
