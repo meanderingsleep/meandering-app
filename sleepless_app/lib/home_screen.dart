@@ -19,96 +19,127 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: SizedBox (
-          width: 150,
-          height: 60,
-          child: SvgPicture.asset(
+          middle: SvgPicture.asset(
             'assets/images/logo.svg',
-            fit: BoxFit.contain,
           ),
-        ),
           backgroundColor: Colors.transparent
       ),
       child: Container(
         constraints: const BoxConstraints.expand(),
         decoration: screenDecoration,
-        child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(15.0),
-                      child: SvgPicture.asset('assets/images/speakingicon.svg')
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 13.0),
-                      child: CupertinoSlidingSegmentedControl<String>(
-                        key: const Key('genderSlider'),
-                        backgroundColor: Colors.white10, // Semi-transparent background
-                        thumbColor: Colors.white30, // White thumb for better visibility
-                        children: const {
-                          'male': Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                            child: Text('Male',
-                                key: Key('maleKey'),
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                  color: Colors.white, // Changed to white for better contrast
-                                )),
-                          ),
-                          'female': Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                            child: Text('Female',
-                                key: Key('femaleKey'),
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                  color: Colors.white, // Changed to white for better contrast
-                                )),
-                          ),
-                        },
-                        onValueChanged: (value) {
-                          setState(() {
-                            _selectedGender = value;
-                          });
-                        },
-                        groupValue: _selectedGender,
-                      ),
-                    ),
-                    CupertinoButton(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 1.0),
-                      child: SvgPicture.asset('assets/images/playnightly.svg'),
-                      onPressed: () {
-                        _selectedStory = 'classic';
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender, selectedStory: _selectedStory)),
-                        );
-                      },
-                    ),
-                    CupertinoButton(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 1.0),
-                      child: SvgPicture.asset('assets/images/boringweather.svg'),
-                      onPressed: () {
-                        _selectedStory = 'weather';
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PlayScreen(selectedGender: _selectedGender, selectedStory: _selectedStory)),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+                padding: EdgeInsets.all(15.0),
+                child: SvgPicture.asset('assets/images/speakingicon.svg')
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 13.0),
+              child: CupertinoSlidingSegmentedControl<String>(
+                key: const Key('genderSlider'),
+                backgroundColor: Colors.white10,
+                // Semi-transparent background
+                thumbColor: Colors.white30,
+                // White thumb for better visibility
+                children: const {
+                  'male': Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 10.0),
+                    child: Text('Male',
+                        key: Key('maleKey'),
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.none,
+                          color: Colors
+                              .white, // Changed to white for better contrast
+                        )),
+                  ),
+                  'female': Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: 15.0, horizontal: 10.0),
+                    child: Text('Female',
+                        key: Key('femaleKey'),
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.none,
+                          color: Colors
+                              .white, // Changed to white for better contrast
+                        )),
+                  ),
+                },
+                onValueChanged: (value) {
+                  setState(() {
+                    _selectedGender = value;
+                  });
+                },
+                groupValue: _selectedGender,
               ),
-            ],
-          ),
+            ),
+            Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0, vertical: 10.0),
+                    child: SvgPicture.asset(
+                        'assets/images/buttoncontainer.svg'),
+                  ),
+                  Column(
+                      children: [
+                        CupertinoButton(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25.0, vertical: 7.0),
+                          child: SvgPicture.asset(
+                              'assets/images/meanderingbutton.svg'),
+                          onPressed: () {
+                            _selectedStory = 'classic';
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  PlayScreen(selectedGender: _selectedGender,
+                                      selectedStory: _selectedStory)),
+                            );
+                          },
+                        ),
+                        CupertinoButton(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25.0, vertical: 7.0),
+                          child: SvgPicture.asset(
+                              'assets/images/boringbutton.svg'),
+                          onPressed: () {
+                            _selectedStory = 'boring';
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  PlayScreen(selectedGender: _selectedGender,
+                                      selectedStory: _selectedStory)),
+                            );
+                          },
+                        ),
+                        CupertinoButton(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25.0, vertical: 7.0),
+                          child: SvgPicture.asset(
+                              'assets/images/portbutton.svg'),
+                          onPressed: () {
+                            _selectedStory = 'weather';
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  PlayScreen(selectedGender: _selectedGender,
+                                      selectedStory: _selectedStory)),
+                            );
+                          },
+                        ),
+                      ]
+                  )
+                ]
+            ),
+          ],
         ),
       ),
     );
