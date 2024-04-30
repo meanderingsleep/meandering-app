@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import "common.dart";
+import 'common.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sleepless_app/play_screen.dart';
 import 'package:email_validator/email_validator.dart';
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                    padding: EdgeInsets.only(top: 45.0, bottom: 15),
+                    padding: const EdgeInsets.only(top: 45.0, bottom: 15),
                     child: SvgPicture.asset('assets/images/speakingicon.svg')
                 ),
                 Padding(
@@ -212,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: CupertinoColors.activeBlue,  // Background color
                           borderRadius: BorderRadius.circular(8),  // Rounded corners
                         ),
-                        child: Icon(
+                        child: const Icon(
                           CupertinoIcons.check_mark,  // Icon instead of text
                           size: 28,
                           color: CupertinoColors.white,

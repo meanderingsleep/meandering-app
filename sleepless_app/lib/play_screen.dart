@@ -111,7 +111,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           backgroundColor: Colors.transparent, // Set background color to transparent
           elevation: 0, // Remove shadow
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white), // Set the back arrow icon
+            icon: const Icon(Icons.arrow_back, color: Colors.white), // Set the back arrow icon
             onPressed: () => Navigator.of(context).pop(), // Defines the action on press
           ),
           centerTitle: true,

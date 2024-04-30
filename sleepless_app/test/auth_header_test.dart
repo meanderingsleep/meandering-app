@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:sleepless_app/utils.dart';
 
 void main() {
   test('S3 bucket accessible', () async

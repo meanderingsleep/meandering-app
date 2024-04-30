@@ -31,6 +31,8 @@ dependencies:
   email_validator: ^2.1.17
   fluttertoast: ^8.2.5
 
+  audio_session: any
+  rxdart: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
