@@ -131,8 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       Column(
                           children: [
                             CupertinoButton(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25.0, vertical: 7.0),
+                              padding: const EdgeInsets.only(
+                                  top: 13.0, bottom: 4.0),
                               child: SvgPicture.asset(
                                   'assets/images/meanderingbutton.svg'),
                               onPressed: () {
@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             CupertinoButton(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 25.0, vertical: 7.0),
+                                  horizontal: 25.0, vertical: 5.0),
                               child: SvgPicture.asset(
                                   'assets/images/boringbutton.svg'),
                               onPressed: () {
@@ -162,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             CupertinoButton(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 25.0, vertical: 7.0),
+                                  horizontal: 25.0, vertical: 5.0),
                               child: SvgPicture.asset(
                                   'assets/images/portbutton.svg'),
                               onPressed: () {
@@ -179,53 +179,68 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ]
                 ),
-                Row(
-                  children: [
-                    Expanded (
-                      child: Form(
-                        key: formKey,
-                        child: CupertinoTextFormFieldRow(
-                          placeholder: 'Email',
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (email) =>
-                          email != null && !EmailValidator.validate(email)
-                              ? 'Enter a valid email'
-                              : null,
+                Container (
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text("Stay up to date",
+                      style: TextStyle(
+                        color: Colors.yellow,
+                        fontWeight: FontWeight.bold,// Set the opacity of the color
+                      )
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 50.0), // Add horizontal padding to the container
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 50, // Specify the height to make it consistent
                           decoration: BoxDecoration(
-                            color: Colors.white, // Set the background color to white
-                            border: Border.all(
-                              color: Colors.grey, // Optional: Set border color
-                              width: 1.0, // Optional: Set border width
+                            color: Colors.white,
+                            borderRadius: BorderRadius.horizontal(left: Radius.circular(15.0)),
+                            //border: Border.all(color: Colors.grey, width: 1.0),
+                          ),
+                          child: Form(
+                            key: formKey,
+                            child: CupertinoTextFormFieldRow(
+                              placeholder: 'Email',
+                              autovalidateMode: AutovalidateMode.onUserInteraction,
+                              validator: (email) => email != null && !EmailValidator.validate(email) ? 'Enter a valid email' : null,
+                              decoration: BoxDecoration(
+                                // Set border to none inside the text form field to remove the separator
+                                border: Border(
+                                  right: BorderSide.none, // This should remove the vertical line
+                                ),
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(15.0), // Optional: Set border radius
                           ),
                         ),
                       ),
-                    ),
-                    CupertinoButton(
-                      padding: EdgeInsets.zero,  // Minimize padding
-                      child: Container(
-                        width: 40,  // Define a fixed width
-                        height: 40,  // Define a fixed height to make it square
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: CupertinoColors.activeBlue,  // Background color
-                          borderRadius: BorderRadius.circular(8),  // Rounded corners
+                      CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        child: Container(
+                          width: 50, // Adjust width as needed
+                          height: 50, // Ensure the button is the same height as the input field
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: CupertinoColors.activeBlue,
+                            borderRadius: BorderRadius.horizontal(right: Radius.circular(15.0)),
+                          ),
+                          child: const Icon(
+                            CupertinoIcons.checkmark_alt_circle_fill,
+                            size: 28,
+                            color: CupertinoColors.white,
+                          ),
                         ),
-                        child: const Icon(
-                          CupertinoIcons.check_mark,  // Icon instead of text
-                          size: 28,
-                          color: CupertinoColors.white,
-                        ),
+                        onPressed: () {
+                          final FormState? form = formKey.currentState;
+                          if (form != null && form.validate()) {
+                            print('Form Valid');
+                          }
+                        },
                       ),
-                      onPressed: () {
-                        final FormState? form = formKey.currentState;
-                        if (form != null && form.validate()) {
-                          print('Form Valid');
-                        }
-                      },
-                    )
-                  ]
+                    ],
+                  ),
                 ),
               ],
             ),
