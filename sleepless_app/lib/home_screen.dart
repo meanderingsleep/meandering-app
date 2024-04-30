@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text("Stay up to date",
                       style: TextStyle(
-                        color: Colors.yellow.withOpacity(0.9),
+                        color: Colors.grey.withOpacity(0.9),
                         fontWeight: FontWeight.bold,// Set the opacity of the color
                       )
                   ),
