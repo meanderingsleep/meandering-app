@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text("Stay up to date",
                       style: TextStyle(
-                        color: Colors.yellow,
+                        color: Colors.yellow.withOpacity(0.9),
                         fontWeight: FontWeight.bold,// Set the opacity of the color
                       )
                   ),
@@ -194,23 +194,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: 50, // Specify the height to make it consistent
+                          height: 65, // Specify the height to make it consistent
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Colors.grey.withOpacity(0.6), // 50% transparent white
                             borderRadius: BorderRadius.horizontal(left: Radius.circular(15.0)),
-                            //border: Border.all(color: Colors.grey, width: 1.0),
+                            border: Border.all(color: Colors.grey.withOpacity(0.75), width: 1.0), // 50% transparent grey border
                           ),
                           child: Form(
                             key: formKey,
                             child: CupertinoTextFormFieldRow(
                               placeholder: 'Email',
-                              autovalidateMode: AutovalidateMode.onUserInteraction,
-                              validator: (email) => email != null && !EmailValidator.validate(email) ? 'Enter a valid email' : null,
-                              decoration: BoxDecoration(
-                                // Set border to none inside the text form field to remove the separator
-                                border: Border(
-                                  right: BorderSide.none, // This should remove the vertical line
-                                ),
+                              autovalidateMode:
+                              AutovalidateMode.onUserInteraction,
+                              validator: (email) =>
+                              email != null && !EmailValidator.validate(email)
+                                  ? 'Enter a valid email'
+                                  : null,
+                              decoration: const BoxDecoration(
+                                border: Border(right: BorderSide.none), // Ensure there's no border on the right
                               ),
                             ),
                           ),
@@ -219,17 +220,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       CupertinoButton(
                         padding: EdgeInsets.zero,
                         child: Container(
-                          width: 50, // Adjust width as needed
-                          height: 50, // Ensure the button is the same height as the input field
+                          width: 70, // Adjust width as needed
+                          height: 65, // Ensure the button is the same height as the input field
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: CupertinoColors.activeBlue,
+                            color: CupertinoColors.systemGrey.withOpacity(0.6), // 50% transparent blue
                             borderRadius: BorderRadius.horizontal(right: Radius.circular(15.0)),
                           ),
-                          child: const Icon(
-                            CupertinoIcons.checkmark_alt_circle_fill,
-                            size: 28,
-                            color: CupertinoColors.white,
+                          child: Opacity(
+                            opacity: 0.75,
+                            child: const Icon(
+                              CupertinoIcons.checkmark_alt_circle_fill,
+                              color: Colors.yellow,
+                              size: 28,
+                            ),
                           ),
                         ),
                         onPressed: () {
