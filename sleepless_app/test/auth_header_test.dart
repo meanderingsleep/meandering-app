@@ -29,10 +29,7 @@ void main() {
 
     final String basicAuth = 'Basic ' + base64.encode(utf8.encode('anystring:$mc_api_key'));
 
-    final response = await http.get(url, headers: {
-      HttpHeaders.authorizationHeader: 'Basic $basicAuth',
-    }
-    );
+    final response = await http.get(url, headers: <String, String>{'Authorization': basicAuth});
     expect(response.statusCode, 200);
 
 
