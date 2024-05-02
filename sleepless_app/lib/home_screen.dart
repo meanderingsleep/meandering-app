@@ -4,6 +4,7 @@ import 'common.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sleepless_app/play_screen.dart';
 import 'package:email_validator/email_validator.dart';
+import 'utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,48 +12,23 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-class CupertinoTextFieldExample extends StatefulWidget {
-  const CupertinoTextFieldExample({super.key});
-
-  @override
-  State<CupertinoTextFieldExample> createState() =>
-      _CupertinoTextFieldExampleState();
-}
-
-class _CupertinoTextFieldExampleState extends State<CupertinoTextFieldExample> {
-  late TextEditingController _textController;
-
-  @override
-  void initState() {
-    super.initState();
-    _textController = TextEditingController(text: 'initial text');
-  }
-
-  @override
-  void dispose() {
-    _textController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('CupertinoTextField Sample'),
-      ),
-      child: Center(
-        child: CupertinoTextField(
-          controller: _textController,
-        ),
-      ),
-    );
-  }
-}
 
 class _HomeScreenState extends State<HomeScreen> {
   String? _selectedGender = 'male';
   String? _selectedStory = 'classic';
   final formKey = GlobalKey<FormState>();
+  late TextEditingController _textController;
+
+  @override void initState() {
+    _textController = TextEditingController();
+    super.initState();
+  }
+
+  @override void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -203,6 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Form(
                             key: formKey,
                             child: CupertinoTextFormFieldRow(
+                              controller: _textController,
                               placeholder: 'Email',
                               autovalidateMode:
                               AutovalidateMode.onUserInteraction,
@@ -227,19 +204,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: CupertinoColors.systemGrey.withOpacity(0.6), // 50% transparent blue
                             borderRadius: BorderRadius.horizontal(right: Radius.circular(15.0)),
                           ),
-                          child: Opacity(
+                          child: const Opacity(
                             opacity: 0.75,
-                            child: const Icon(
+                            child: Icon(
                               CupertinoIcons.checkmark_alt_circle_fill,
                               color: Colors.yellow,
                               size: 28,
                             ),
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           final FormState? form = formKey.currentState;
                           if (form != null && form.validate()) {
-                            print('Form Valid');
+                            saveEmail(_textController.text);
                           }
                         },
                       ),

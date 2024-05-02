@@ -25,13 +25,15 @@ void main() {
     final mc_list_id  = dotenv.env['MAILCHIMP_LIST_ID'];
     
     final url = Uri.https('us17.api.mailchimp.com', '/3.0/lists/' + mc_list_id! + '/members');
-    final client = http.Client();
 
     final String basicAuth = 'Basic ' + base64.encode(utf8.encode('anystring:$mc_api_key'));
 
-    final response = await http.get(url, headers: <String, String>{'Authorization': basicAuth});
-    expect(response.statusCode, 200);
+    final response = await http.post(url,
+        headers: <String, String>{'Authorization': basicAuth},
+        body: '{"email_address":"test2@here.com","status":"subscribed"}'
+    );
 
-
+    // response 400 means that the email address already exists, which in this case, is what we're testing for
+    expect(response.statusCode, 400);
   });
 }
