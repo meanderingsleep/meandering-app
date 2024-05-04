@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 T? ambiguate<T>(T? value) => value;
 
-const Color backgroundColor = Color(0xFF1B1E40);
-
 class SeekBar extends StatefulWidget {
   final Duration duration;
   final Duration position;
@@ -104,7 +102,8 @@ class SeekBarState extends State<SeekBar> {
                       .firstMatch('$_remaining')
                       ?.group(1) ??
                   '$_remaining',
-              style: Theme.of(context).textTheme.bodySmall),
+              style: const TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );

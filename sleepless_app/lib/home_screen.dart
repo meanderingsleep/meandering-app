@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'common.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sleepless_app/play_screen.dart';
 import 'package:email_validator/email_validator.dart';
@@ -16,6 +15,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String? _selectedGender = 'male';
   String? _selectedStory = 'classic';
+  final TextStyle _genderStyle = const TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16);
   final formKey = GlobalKey<FormState>();
   late TextEditingController _textController;
 
@@ -31,14 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-          middle: SvgPicture.asset(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+          title: SvgPicture.asset(
             'assets/images/logo.svg',
           ),
           backgroundColor: Colors.transparent
       ),
-      child: Container(
+      body: Container(
         constraints: const BoxConstraints.expand(),
         child: SafeArea (
           child: SingleChildScrollView (
@@ -58,21 +61,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Semi-transparent background
                     thumbColor: Colors.white30,
                     // White thumb for better visibility
-                    children: const {
+                    children: {
                       'male': Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 10.0),
                         child: Text('Male',
-                            key: Key('maleKey'),
-                            style: TextStyle(fontWeight: FontWeight.bold)
+                            key: const Key('maleKey'),
+                            style: _genderStyle
                             ),
                       ),
                       'female': Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 15.0, horizontal: 10.0),
                         child: Text('Female',
-                            key: Key('femaleKey'),
-                            style: TextStyle(fontWeight: FontWeight.bold)
+                            key: const Key('femaleKey'),
+                            style: _genderStyle,
                         ),
                       ),
                     },
@@ -95,10 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Column(
                           children: [
-                            CupertinoButton(
+                            MaterialButton(
                               key: const Key('meander'),
-                              padding: const EdgeInsets.only(
-                                  top: 13.0, bottom: 4.0),
+                              padding: const EdgeInsets.only(top: 13.0, bottom: 4.0),
                               child: SvgPicture.asset(
                                   'assets/images/meanderingbutton.svg'),
                               onPressed: () {
@@ -111,10 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 );
                               },
                             ),
-                            CupertinoButton(
+                            MaterialButton(
                               key: const Key('boring'),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25.0, vertical: 5.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                               child: SvgPicture.asset(
                                   'assets/images/boringbutton.svg'),
                               onPressed: () {
@@ -127,10 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 );
                               },
                             ),
-                            CupertinoButton(
+                            MaterialButton(
                               key: const Key('port'),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25.0, vertical: 5.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                               child: SvgPicture.asset(
                                   'assets/images/portbutton.svg'),
                               onPressed: () {
@@ -148,13 +148,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]
                 ),
                 Container (
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text('Stay up to date',
-                      style: TextStyle(color: Colors.grey.withOpacity(0.9))
+                      style: TextStyle(
+                        color: Colors.grey.withOpacity(0.9),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 50.0), // Add horizontal padding to the container
+                  padding: const EdgeInsets.symmetric(horizontal: 50.0), // Add horizontal padding to the container
                   child: Row(
                     children: [
                       Expanded(
@@ -162,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 65, // Specify the height to make it consistent
                           decoration: BoxDecoration(
                             color: Colors.grey.withOpacity(0.6), // 50% transparent white
-                            borderRadius: BorderRadius.horizontal(left: Radius.circular(15.0)),
+                            borderRadius: const BorderRadius.horizontal(left: Radius.circular(15.0)),
                             border: Border.all(color: Colors.grey.withOpacity(0.75), width: 1.0), // 50% transparent grey border
                           ),
                           child: Form(
@@ -183,20 +187,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      CupertinoButton(
-                        padding: EdgeInsets.zero,
+                      MaterialButton(
+                        //padding: EdgeInsets.zero,
                         child: Container(
                           width: 70, // Adjust width as needed
                           height: 65, // Ensure the button is the same height as the input field
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: CupertinoColors.systemGrey.withOpacity(0.6), // 50% transparent blue
-                            borderRadius: BorderRadius.horizontal(right: Radius.circular(15.0)),
+                            color: Colors.grey.withOpacity(0.6), // 50% transparent blue
+                            borderRadius: const BorderRadius.horizontal(right: Radius.circular(15.0)),
                           ),
                           child: const Opacity(
                             opacity: 0.75,
                             child: Icon(
-                              CupertinoIcons.checkmark_alt_circle_fill,
+                              Icons.check_circle_outline_rounded,
                               color: Colors.yellow,
                               size: 28,
                             ),

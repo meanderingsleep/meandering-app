@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -104,9 +103,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         extendBodyBehindAppBar: true, // This extends the body to be behind the AppBar
         appBar: AppBar(
           key: const Key('playScreenAppBar'),
@@ -116,13 +113,16 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             onPressed: () => Navigator.of(context).pop(), // Defines the action on press
           ),
         ),
-        body: Container(
-          decoration: const BoxDecoration(color: backgroundColor),
-          child: Column(
+        body:
+          //decoration: const BoxDecoration(color: backgroundColor),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(audioUrl),
+              Text(
+                audioUrl,
+                style: const TextStyle(color: Colors.white),
+              ),
               // Display play/pause button and volume/speed sliders.
               ControlButtons(_player),
               // Display seek bar. Using StreamBuilder, this widget rebuilds
@@ -141,10 +141,8 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
                 },
               ),
             ],
-          ),
         ),
-      ),
-    );
+      );
   }
 }
 

@@ -5,7 +5,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sleepless_app/home_screen.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -29,28 +28,18 @@ class App extends StatelessWidget {
       fontSize: 16.0,
     );
 
-    return const CupertinoApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         DefaultMaterialLocalizations.delegate,
         DefaultWidgetsLocalizations.delegate,
-        DefaultCupertinoLocalizations.delegate,
       ],
       title: 'Sleepless',
-      theme: CupertinoThemeData(
-        scaffoldBackgroundColor: backgroundColor,
-        textTheme: CupertinoTextThemeData(
-          textStyle: textStyleDefault,
-          actionTextStyle: textStyleDefault,
-          tabLabelTextStyle: textStyleDefault,
-          navActionTextStyle: textStyleDefault,
-          navTitleTextStyle: textStyleDefault,
-          navLargeTitleTextStyle: textStyleDefault,
-          pickerTextStyle: textStyleDefault,
-          dateTimePickerTextStyle: textStyleDefault,
-        )
+      theme: ThemeData(
+        fontFamily: 'Montserrat',
+        scaffoldBackgroundColor: const Color(0xFF1B1E40),
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
