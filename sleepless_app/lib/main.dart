@@ -1,7 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sleepless_app/home_screen.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -9,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'common.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -20,13 +17,6 @@ class App extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
-    const textStyleDefault = TextStyle(
-      fontFamily: 'Montserrat',
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      fontSize: 16.0,
-    );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

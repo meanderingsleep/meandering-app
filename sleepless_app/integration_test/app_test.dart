@@ -41,7 +41,7 @@ void main() async {
           await tester.tap(meanderButton);
           await tester.pumpAndSettle();
 
-          var appBar = find.byKey(const Key('playScreenAppBar'));
+          final appBar = find.byKey(const Key('playScreenAppBar'));
           expect(appBar, findsOneWidget);
 
           // make sure no dialogs are present at first

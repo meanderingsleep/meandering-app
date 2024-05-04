@@ -11,11 +11,11 @@ String getDayOfWeekString(DateTime now) {
 
 Future<http.Response> saveEmail(String email) async {
   await dotenv.load();
-  final mc_api_key = dotenv.env['MAILCHIMP_API_KEY'];
-  final mc_list_id  = dotenv.env['MAILCHIMP_LIST_ID'];
+  final mcApiKey = dotenv.env['MAILCHIMP_API_KEY'];
+  final mcListId  = dotenv.env['MAILCHIMP_LIST_ID'];
 
-  final url = Uri.https('us17.api.mailchimp.com', '/3.0/lists/${mc_list_id!}/members');
-  final String basicAuth = 'Basic ${base64.encode(utf8.encode('anystring:$mc_api_key'))}';
+  final url = Uri.https('us17.api.mailchimp.com', '/3.0/lists/${mcListId!}/members');
+  final String basicAuth = 'Basic ${base64.encode(utf8.encode('anystring:$mcApiKey'))}';
 
   return await http.post(url,
       headers: <String, String>{'Authorization': basicAuth},
