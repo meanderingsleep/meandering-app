@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -103,18 +104,17 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
       debugShowCheckedModeBanner: false,
+      theme: themeData,
       home: Scaffold(
         extendBodyBehindAppBar: true, // This extends the body to be behind the AppBar
-        appBar: AppBar(
+        appBar: CupertinoNavigationBar(
           backgroundColor: Colors.transparent, // Set background color to transparent
-          elevation: 0, // Remove shadow
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white), // Set the back arrow icon
             onPressed: () => Navigator.of(context).pop(), // Defines the action on press
           ),
-          centerTitle: true,
         ),
         body: Container(
           decoration: screenDecoration,

@@ -1,7 +1,20 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 T? ambiguate<T>(T? value) => value;
+
+const themeData = CupertinoThemeData(
+    scaffoldBackgroundColor: Color(0xFF1B1E40),
+    textTheme: CupertinoTextThemeData(
+      textStyle: TextStyle(
+        fontFamily: 'Montserrat',
+        color: Colors.white,
+        fontSize: 10.0,
+        fontWeight: FontWeight.bold,
+      ),
+    )
+);
 
 const screenDecoration = BoxDecoration(
   color: Color(0xFF1B1E40)

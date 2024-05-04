@@ -66,11 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text('Male',
                             key: Key('maleKey'),
                             style: TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.none,
-                              color: Colors
-                                  .white, // Changed to white for better contrast
                             )),
                       ),
                       'female': Padding(
@@ -79,11 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text('Female',
                             key: Key('femaleKey'),
                             style: TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.none,
-                              color: Colors
-                                  .white, // Changed to white for better contrast
                             )),
                       ),
                     },
@@ -157,12 +151,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container (
                   padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text("Stay up to date",
+                  child: Text('Stay up to date',
                       style: TextStyle(
+                        fontSize: 16,
                         color: Colors.grey.withOpacity(0.9),
-                        fontWeight: FontWeight.bold,// Set the opacity of the color
-                      )
-                  ),
+                        fontWeight: FontWeight.bold,
+                      )),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 50.0), // Add horizontal padding to the container
