@@ -40,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Container(
         constraints: const BoxConstraints.expand(),
-        decoration: screenDecoration,
         child: SafeArea (
           child: SingleChildScrollView (
             child: Column(
@@ -65,20 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             vertical: 10.0, horizontal: 10.0),
                         child: Text('Male',
                             key: Key('maleKey'),
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            )),
+                            style: TextStyle(fontWeight: FontWeight.bold)
+                            ),
                       ),
                       'female': Padding(
                         padding: EdgeInsets.symmetric(
                             vertical: 15.0, horizontal: 10.0),
                         child: Text('Female',
                             key: Key('femaleKey'),
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            )),
+                            style: TextStyle(fontWeight: FontWeight.bold)
+                        ),
                       ),
                     },
                     onValueChanged: (value) {
@@ -152,11 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container (
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text('Stay up to date',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey.withOpacity(0.9),
-                        fontWeight: FontWeight.bold,
-                      )),
+                      style: TextStyle(color: Colors.grey.withOpacity(0.9))
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 50.0), // Add horizontal padding to the container

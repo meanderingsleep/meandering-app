@@ -106,7 +106,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
-      theme: themeData,
       home: Scaffold(
         extendBodyBehindAppBar: true, // This extends the body to be behind the AppBar
         appBar: CupertinoNavigationBar(
@@ -117,7 +116,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           ),
         ),
         body: Container(
-          decoration: screenDecoration,
+          decoration: const BoxDecoration(color: backgroundColor),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

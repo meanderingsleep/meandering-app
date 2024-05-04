@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
@@ -23,10 +22,29 @@ class App extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
 
+    const textStyleDefault = TextStyle(
+      fontFamily: 'Montserrat',
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontSize: 16.0,
+    );
+
     return const CupertinoApp(
       debugShowCheckedModeBanner: false,
       title: 'Sleepless',
-      theme: themeData,
+      theme: CupertinoThemeData(
+        scaffoldBackgroundColor: backgroundColor,
+        textTheme: CupertinoTextThemeData(
+          textStyle: textStyleDefault,
+          actionTextStyle: textStyleDefault,
+          tabLabelTextStyle: textStyleDefault,
+          navActionTextStyle: textStyleDefault,
+          navTitleTextStyle: textStyleDefault,
+          navLargeTitleTextStyle: textStyleDefault,
+          pickerTextStyle: textStyleDefault,
+          dateTimePickerTextStyle: textStyleDefault,
+        )
+      ),
       home: HomeScreen(),
     );
   }
