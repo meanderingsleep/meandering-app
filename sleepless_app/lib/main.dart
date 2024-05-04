@@ -31,6 +31,11 @@ class App extends StatelessWidget {
 
     return const CupertinoApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+        DefaultMaterialLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+      ],
       title: 'Sleepless',
       theme: CupertinoThemeData(
         scaffoldBackgroundColor: backgroundColor,

@@ -96,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Column(
                           children: [
                             CupertinoButton(
+                              key: const Key('meander'),
                               padding: const EdgeInsets.only(
                                   top: 13.0, bottom: 4.0),
                               child: SvgPicture.asset(
@@ -111,6 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             ),
                             CupertinoButton(
+                              key: const Key('boring'),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 25.0, vertical: 5.0),
                               child: SvgPicture.asset(
@@ -126,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             ),
                             CupertinoButton(
+                              key: const Key('port'),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 25.0, vertical: 5.0),
                               child: SvgPicture.asset(

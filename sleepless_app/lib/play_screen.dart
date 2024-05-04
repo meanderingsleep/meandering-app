@@ -104,11 +104,12 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         extendBodyBehindAppBar: true, // This extends the body to be behind the AppBar
-        appBar: CupertinoNavigationBar(
+        appBar: AppBar(
+          key: const Key('playScreenAppBar'),
           backgroundColor: Colors.transparent, // Set background color to transparent
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white), // Set the back arrow icon
@@ -160,11 +161,13 @@ class ControlButtons extends StatelessWidget {
       children: [
         // Opens volume slider dialog
         IconButton(
+          key: const Key('volumeButton'),
           color: Colors.white,
           icon: const Icon(Icons.volume_up),
           onPressed: () {
             showSliderDialog(
               context: context,
+              key: const Key('volume'),
               title: 'Adjust volume',
               divisions: 10,
               min: 0.0,
@@ -222,6 +225,7 @@ class ControlButtons extends StatelessWidget {
         StreamBuilder<double>(
           stream: player.speedStream,
           builder: (context, snapshot) => IconButton(
+            key: const Key('speedButton'),
             icon: Text('${snapshot.data?.toStringAsFixed(1)}x',
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
@@ -231,6 +235,7 @@ class ControlButtons extends StatelessWidget {
             onPressed: () {
               showSliderDialog(
                 context: context,
+                key: const Key('speed'),
                 title: 'Adjust speed',
                 divisions: 10,
                 min: 0.5,

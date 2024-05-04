@@ -144,6 +144,7 @@ class PositionData {
 
 void showSliderDialog({
   required BuildContext context,
+  required Key key,
   required String title,
   required int divisions,
   required double min,
@@ -157,6 +158,7 @@ void showSliderDialog({
   showDialog<void>(
     context: context,
     builder: (context) => AlertDialog(
+      key: key,
       title: Text(title, textAlign: TextAlign.center),
       content: StreamBuilder<double>(
         stream: stream,
