@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -50,20 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCWMb2jLfgDuZc_BW-xN3mB1Jh_gfQqcVs',
-    appId: '1:186187902593:android:a25689846ccf86cf01a780',
-    messagingSenderId: '186187902593',
-    projectId: 'sleepless-c0c4c',
-    storageBucket: 'sleepless-c0c4c.appspot.com',
+    apiKey: 'AIzaSyAnBowwENstI1HVqB8JjuDjPtKaNyN9cWA',
+    appId: '1:19411767388:android:d3f0266b6ea91d08391699',
+    messagingSenderId: '19411767388',
+    projectId: 'sleepless-6bce2',
+    storageBucket: 'sleepless-6bce2.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAUXv16fM6OHlXnHWG22-TIawm8Ec6R8jI',
-    appId: '1:186187902593:ios:fab23460bb189b1601a780',
-    messagingSenderId: '186187902593',
-    projectId: 'sleepless-c0c4c',
-    storageBucket: 'sleepless-c0c4c.appspot.com',
+    apiKey: 'AIzaSyBiAfOQ1awOYCHD-4yJ4v9KrOyhDGErXHk',
+    appId: '1:19411767388:ios:f3c2574fbd3b8fcc391699',
+    messagingSenderId: '19411767388',
+    projectId: 'sleepless-6bce2',
+    storageBucket: 'sleepless-6bce2.appspot.com',
     iosBundleId: 'net.coventry.sleepless',
+  );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCWobLFywVNlm6-HkVrxbpA3TJXwNNwN_8',
+    appId: '1:19411767388:web:2647fd9b53850017391699',
+    messagingSenderId: '19411767388',
+    projectId: 'sleepless-6bce2',
+    authDomain: 'sleepless-6bce2.firebaseapp.com',
+    storageBucket: 'sleepless-6bce2.appspot.com',
+    measurementId: 'G-69J1PVTHSW',
   );
 
 }

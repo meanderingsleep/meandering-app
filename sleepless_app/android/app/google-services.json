@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "186187902593",
-    "project_id": "sleepless-c0c4c",
-    "storage_bucket": "sleepless-c0c4c.appspot.com"
+    "project_number": "19411767388",
+    "project_id": "sleepless-6bce2",
+    "storage_bucket": "sleepless-6bce2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:186187902593:android:a25689846ccf86cf01a780",
+        "mobilesdk_app_id": "1:19411767388:android:d3f0266b6ea91d08391699",
         "android_client_info": {
           "package_name": "net.coventry.sleepless"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCWMb2jLfgDuZc_BW-xN3mB1Jh_gfQqcVs"
+          "current_key": "AIzaSyAnBowwENstI1HVqB8JjuDjPtKaNyN9cWA"
         }
       ],
       "services": {

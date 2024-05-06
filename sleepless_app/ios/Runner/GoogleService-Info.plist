@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAUXv16fM6OHlXnHWG22-TIawm8Ec6R8jI</string>
+	<string>AIzaSyBiAfOQ1awOYCHD-4yJ4v9KrOyhDGErXHk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>186187902593</string>
+	<string>19411767388</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>net.coventry.sleepless</string>
 	<key>PROJECT_ID</key>
-	<string>sleepless-c0c4c</string>
+	<string>sleepless-6bce2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>sleepless-c0c4c.appspot.com</string>
+	<string>sleepless-6bce2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:186187902593:ios:fab23460bb189b1601a780</string>
+	<string>1:19411767388:ios:f3c2574fbd3b8fcc391699</string>
 </dict>
 </plist>
