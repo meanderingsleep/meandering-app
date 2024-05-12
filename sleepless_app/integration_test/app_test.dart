@@ -3,12 +3,35 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:sleepless_app/main.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
 
   group('end-to-end test', () {
+
+    testWidgets('do not show the email capture form if the user already submitted.',
+            (tester) async {
+              SharedPreferences.setMockInitialValues(<String, Object> {
+                    'email_submitted': true,
+              });
+
+              await tester.pumpWidget(const App());
+              await tester.pumpAndSettle();
+
+              final emailFormSection = find.byKey(const Key('email_form'));
+              expect(emailFormSection, findsNothing);
+            });
+
+    testWidgets('make sure the email capture form appears by default',
+            (tester) async {
+              await tester.pumpWidget(const App());
+
+              final emailFormSection = find.byKey(const Key('email_form'));
+              expect(emailFormSection, findsOneWidget);
+        });
+
     testWidgets('tap on the female gender button, verify selected',
             (tester) async {
           // Load app widget.
@@ -59,7 +82,7 @@ void main() async {
           expect(volumeDialog, findsOneWidget);
 
           // make the volume dialog disappear
-          await tester.tap(appBar); // tap away from the dialog
+          await tester.tap(appBar, warnIfMissed: false); // tap away from the dialog
           await tester.pumpAndSettle();
           volumeDialog = find.byKey(const Key('volume'));
           expect(volumeDialog, findsNothing);
@@ -73,7 +96,7 @@ void main() async {
           expect(speedDialog, findsOneWidget);
 
           // make the volume dialog disappear
-          await tester.tap(appBar); // tap away from the dialog
+          await tester.tap(appBar, warnIfMissed: false); // tap away from the dialog
           await tester.pumpAndSettle();
           speedDialog = find.byKey(const Key('speed'));
           expect(speedDialog, findsNothing);

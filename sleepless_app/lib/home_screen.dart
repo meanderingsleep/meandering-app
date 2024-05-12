@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sleepless_app/play_screen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,14 +17,31 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String? _selectedGender = 'male';
   String? _selectedStory = 'classic';
+  bool showEmailForm = true;
+
   final TextStyle _genderStyle = const TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 16);
-  final formKey = GlobalKey<FormState>();
+
   late TextEditingController _textController;
+
+  Future<void> _loadPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      showEmailForm = !(prefs.getBool('email_submitted') ?? false);
+    });
+  }
+
+  Future<void> _savePrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setBool('email_submitted', !showEmailForm);
+    });
+  }
 
   @override void initState() {
     _textController = TextEditingController();
+    _loadPrefs();
     super.initState();
   }
 
@@ -147,17 +166,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ]
                 ),
-                Container (
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text('Stay up to date',
-                      style: TextStyle(
-                        color: Colors.grey.withOpacity(0.9),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                Visibility(visible: showEmailForm, child: Column ( children: [
+
+                      Container (
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text('Stay up to date',
+                            style: TextStyle(
+                              color: Colors.grey.withOpacity(0.9),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                        ),
                       ),
-                  ),
-                ),
-                Container(
+
+                      Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50.0), // Add horizontal padding to the container
                   child: Row(
                     children: [
@@ -170,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             border: Border.all(color: Colors.grey.withOpacity(0.75), width: 1.0), // 50% transparent grey border
                           ),
                           child: Form(
-                            key: formKey,
+                            key: const Key('email_form'),
                             child: CupertinoTextFormFieldRow(
                               controller: _textController,
                               placeholder: 'Email',
@@ -187,6 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+
                       MaterialButton(
                         //padding: EdgeInsets.zero,
                         child: Container(
@@ -207,15 +230,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         onPressed: () async {
-                          final FormState? form = formKey.currentState;
-                          if (form != null && form.validate()) {
                             saveEmail(_textController.text);
-                          }
+                            showEmailForm = false;
+                            _savePrefs();
                         },
                       ),
                     ],
                   ),
                 ),
+                ]))
               ],
             ),
           ),
