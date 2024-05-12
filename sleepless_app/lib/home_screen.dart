@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool showEmailForm = true;
 
   final TextStyle _genderStyle = const TextStyle(
-      fontWeight: FontWeight.bold,
+      color: Colors.white,
       fontSize: 16);
 
   late TextEditingController _textController;
@@ -55,9 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         centerTitle: true,
           title: SvgPicture.asset(
+            width: 50,
+            height: 50,
             'assets/images/logo.svg',
           ),
-          backgroundColor: Colors.transparent
+            backgroundColor: Colors.transparent
       ),
       body: Container(
         constraints: const BoxConstraints.expand(),
@@ -165,30 +167,28 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ]
                 ),
-                Visibility(visible: showEmailForm, child: Column ( children: [
-
+          Visibility(visible: showEmailForm, child: Column ( children: [
                       Container (
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text('Stay up to date',
-                            style: TextStyle(
-                              color: Colors.grey.withOpacity(0.9),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                        ),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text('Stay up to date',
+                      style: TextStyle(
+                        color: Colors.grey.withOpacity(0.9),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat-Bold',
+                        fontSize: 18,
                       ),
-
-                      Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 50.0), // Add horizontal padding to the container
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 51.0), // Add horizontal padding to the container
                   child: Row(
                     children: [
                       Expanded(
                         child: Container(
-                          height: 65, // Specify the height to make it consistent
+                          height: 65,
                           decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.6), // 50% transparent white
+                            color: Colors.grey.withOpacity(0.5),
                             borderRadius: const BorderRadius.horizontal(left: Radius.circular(15.0)),
-                            border: Border.all(color: Colors.grey.withOpacity(0.75), width: 1.0), // 50% transparent grey border
                           ),
                           child: Form(
                             key: const Key('email_form'),
@@ -202,23 +202,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? 'Enter a valid email'
                                   : null,
                               decoration: const BoxDecoration(
-                                border: Border(right: BorderSide.none), // Ensure there's no border on the right
+                                border: Border(right: BorderSide.none),
                               ),
                             ),
                           ),
                         ),
                       ),
-
-                      MaterialButton(
-                        //padding: EdgeInsets.zero,
-                        child: Container(
-                          width: 70, // Adjust width as needed
-                          height: 65, // Ensure the button is the same height as the input field
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.6), // 50% transparent blue
-                            borderRadius: const BorderRadius.horizontal(right: Radius.circular(15.0)),
-                          ),
+                      Container(
+                        width: 70,
+                        height: 65,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.5),
+                          borderRadius: const BorderRadius.horizontal(right: Radius.circular(15.0)),
+                        ),
+                        child: MaterialButton(
+                          padding: EdgeInsets.zero,
                           child: const Opacity(
                             opacity: 0.75,
                             child: Icon(
@@ -227,12 +225,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 28,
                             ),
                           ),
-                        ),
-                        onPressed: () async {
+                          onPressed: () async {
                             saveEmail(_textController.text);
                             showEmailForm = false;
                             _savePrefs();
-                        },
+                          },
+                        ),
                       ),
                     ],
                   ),
