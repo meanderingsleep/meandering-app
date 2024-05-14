@@ -5,6 +5,8 @@ import 'package:sleepless_app/play_screen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -229,6 +231,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             saveEmail(_textController.text);
                             showEmailForm = false;
                             _savePrefs();
+                            Fluttertoast.showToast(
+                                msg: "You have been subscribed.",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.grey[800],
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
                           },
                         ),
                       ),
