@@ -66,12 +66,12 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 
           final source = AudioSource.uri(
           Uri.parse(audioUrl),
-          tag: const MediaItem(
+          tag: MediaItem(
             // Specify a unique ID for each media item:
             id: '1',
             // Metadata to display in the notification:
-            album: 'Meandering audio',
-            title: 'Sleep story',
+            album: 'Sleepless',
+            title: '${widget.selectedStory}',
           ),
         );
 
