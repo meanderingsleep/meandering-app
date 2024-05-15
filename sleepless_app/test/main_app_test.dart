@@ -8,7 +8,7 @@ void main() {
     final mFinder = find.text('Male');
     final fFinder = find.text('Female');
 
-    expect(mFinder, findsNWidgets(2));
-    expect(fFinder, findsNWidgets(2));
+    expect(mFinder, findsOneWidget);
+    expect(fFinder, findsOneWidget);
   });
 }
