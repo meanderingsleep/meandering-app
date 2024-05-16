@@ -157,6 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: MaterialButton(
                                 padding: const EdgeInsets.all(0.0),
                                 key: const Key('meander'),
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 child: SvgPicture.asset(
                                   'assets/images/meanderingbutton.svg',
                                 ),
@@ -186,6 +188,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: MaterialButton(
                                 padding: const EdgeInsets.all(0.0),
                                 key: const Key('boring'),
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 child: SvgPicture.asset(
                                     'assets/images/boringbutton.svg',
                                 ),
@@ -215,6 +219,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: MaterialButton(
                                 padding: const EdgeInsets.all(0.0),
                                 key: const Key('port'),
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 child: SvgPicture.asset(
                                   'assets/images/portbutton.svg',
                                 ),
