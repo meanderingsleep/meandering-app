@@ -118,14 +118,14 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             onPressed: () => Navigator.of(context).pop(), // Defines the action on press
           ),
         ),
-        body:
-          //decoration: const BoxDecoration(color: backgroundColor),
-          Column(
+        body: Padding (
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container (
-                padding: const EdgeInsets.symmetric(horizontal: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Image.asset('assets/images/${widget.selectedStory}_thumbnail.png'),
               ),
               // Display play/pause button and volume/speed sliders.
@@ -147,6 +147,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
               ),
             ],
           ),
+        ),
       );
   }
 }
