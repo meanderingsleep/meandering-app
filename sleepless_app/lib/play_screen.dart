@@ -41,6 +41,11 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 
     final day = getDayOfWeekString(DateTime.now());
     audioUrl = 'https://${dotenv.env['S3_BUCKET']!}.s3.amazonaws.com/${day}_${widget.selectedStory}_${widget.selectedGender}.mp3';
+
+    if (widget.selectedStory == 'weather') {
+      _player.setSpeed(0.84);
+    }
+
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
