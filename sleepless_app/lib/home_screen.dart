@@ -122,122 +122,134 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              spreadRadius: 0,
-                              blurRadius: 3,
-                              offset: Offset(0, 8), // changes position of shadow
-                            ),
-                          ],
+                Container (
+                  padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  child: Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(35),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                spreadRadius: 0,
+                                blurRadius: 3,
+                                offset: Offset(0, 0), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: SvgPicture.asset(
+                              'assets/images/buttoncontainer.svg'),
                         ),
-                        child: SvgPicture.asset(
-                            'assets/images/buttoncontainer.svg'),
-                      ),
-                      Column(
-                          children: [
-                            Container (
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(35),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    spreadRadius: 0,
-                                    blurRadius: 3,
-                                    offset: Offset(0, 0), // changes position of shadow
+                        Column(
+                            children: [
+                              Container (
+                                padding: EdgeInsets.only(bottom: 15),
+                                child: Container (
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        spreadRadius: 0,
+                                        blurRadius: 3,
+                                        offset: Offset(0, 6), // changes position of shadow
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              child: MaterialButton(
-                                padding: const EdgeInsets.all(0.0),
-                                key: const Key('meander'),
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                child: SvgPicture.asset(
-                                  'assets/images/meanderingbutton.svg',
-                                ),
-                                onPressed: () {
-                                  _selectedStory = 'classic';
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) =>
-                                        PlayScreen(selectedGender: _selectedGender,
-                                            selectedStory: _selectedStory)),
-                                  );
-                                },
-                              ),
-                            ),
-                            Container (
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(35),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    spreadRadius: 0,
-                                    blurRadius: 3,
-                                    offset: Offset(0, 0), // changes position of shadow
+                                  child: MaterialButton(
+                                    padding: const EdgeInsets.all(0.0),
+                                    key: const Key('meander'),
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    child: SvgPicture.asset(
+                                      'assets/images/meanderingbutton.svg',
+                                    ),
+                                    onPressed: () {
+                                      _selectedStory = 'classic';
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>
+                                            PlayScreen(selectedGender: _selectedGender,
+                                                selectedStory: _selectedStory)),
+                                      );
+                                    },
                                   ),
-                                ],
-                              ),
-                              child: MaterialButton(
-                                padding: const EdgeInsets.all(0.0),
-                                key: const Key('boring'),
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                child: SvgPicture.asset(
-                                    'assets/images/boringbutton.svg',
                                 ),
-                                onPressed: () {
-                                  _selectedStory = 'boring';
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) =>
-                                        PlayScreen(selectedGender: _selectedGender,
-                                            selectedStory: _selectedStory)),
-                                  );
-                                },
                               ),
-                            ),
-                            Container (
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(35),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    spreadRadius: 0,
-                                    blurRadius: 3,
-                                    offset: Offset(0, 0), // changes position of shadow
+                              Container (
+                                padding: EdgeInsets.only(bottom: 15),
+                                child: Container (
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        spreadRadius: 0,
+                                        blurRadius: 3,
+                                        offset: Offset(0, 6), // changes position of shadow
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              child: MaterialButton(
-                                padding: const EdgeInsets.all(0.0),
-                                key: const Key('port'),
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                child: SvgPicture.asset(
-                                  'assets/images/portbutton.svg',
+                                  child: MaterialButton(
+                                    padding: const EdgeInsets.all(0.0),
+                                    key: const Key('boring'),
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    child: SvgPicture.asset(
+                                      'assets/images/boringbutton.svg',
+                                    ),
+                                    onPressed: () {
+                                      _selectedStory = 'initialize_boring';
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>
+                                            PlayScreen(selectedGender: _selectedGender,
+                                                selectedStory: _selectedStory)),
+                                      );
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  _selectedStory = 'weather';
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) =>
-                                        PlayScreen(selectedGender: _selectedGender,
-                                            selectedStory: _selectedStory)),
-                                  );
-                                },
                               ),
-                            ),
-                          ]
-                      )
-                    ]
+                              Container (
+                                child: Container (
+                                  // padding: EdgeInsets.only(bottom: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        spreadRadius: 0,
+                                        blurRadius: 3,
+                                        offset: Offset(0, 6), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: MaterialButton(
+                                    padding: const EdgeInsets.all(0.0),
+                                    key: const Key('port'),
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    child: SvgPicture.asset(
+                                      'assets/images/portbutton.svg',
+                                    ),
+                                    onPressed: () {
+                                      _selectedStory = 'weather';
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>
+                                            PlayScreen(selectedGender: _selectedGender,
+                                                selectedStory: _selectedStory)),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              )
+                            ]
+                        )
+                      ]
+                  ),
                 ),
           Visibility(visible: showEmailForm, child: Column ( children: [
                       Container (
@@ -277,7 +289,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             key: const Key('email_form'),
                             child: CupertinoTextFormFieldRow(
                               controller: _textController,
-                              placeholder: 'Email',
+                              placeholder: 'Email address',
+                              placeholderStyle: const TextStyle(
+                                color: Colors.white12,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Montserrat-Bold',
+                              ),
                               autovalidateMode:
                               AutovalidateMode.onUserInteraction,
                               validator: (email) =>
@@ -315,7 +332,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Fluttertoast.showToast(
                                 msg: "You have been subscribed.",
                                 toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.BOTTOM,
+                                gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
                                 backgroundColor: Colors.grey[800],
                                 textColor: Colors.white,

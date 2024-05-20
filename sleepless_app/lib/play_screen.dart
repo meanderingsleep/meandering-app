@@ -115,32 +115,32 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
         ),
         body:
           //decoration: const BoxDecoration(color: backgroundColor),
-          Container (
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/classicthumbnail.png'),
-                // Display play/pause button and volume/speed sliders.
-                ControlButtons(_player),
-                // Display seek bar. Using StreamBuilder, this widget rebuilds
-                // each time the position, buffered position or duration changes.
-                StreamBuilder<PositionData>(
-                  stream: _positionDataStream,
-                  builder: (context, snapshot) {
-                    final positionData = snapshot.data;
-                    return SeekBar(
-                      duration: positionData?.duration ?? Duration.zero,
-                      position: positionData?.position ?? Duration.zero,
-                      bufferedPosition:
-                      positionData?.bufferedPosition ?? Duration.zero,
-                      onChangeEnd: _player.seek,
-                    );
-                  },
-                ),
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container (
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Image.asset('assets/images/${widget.selectedStory}_thumbnail.png'),
+              ),
+              // Display play/pause button and volume/speed sliders.
+              ControlButtons(_player),
+              // Display seek bar. Using StreamBuilder, this widget rebuilds
+              // each time the position, buffered position or duration changes.
+              StreamBuilder<PositionData>(
+                stream: _positionDataStream,
+                builder: (context, snapshot) {
+                  final positionData = snapshot.data;
+                  return SeekBar(
+                    duration: positionData?.duration ?? Duration.zero,
+                    position: positionData?.position ?? Duration.zero,
+                    bufferedPosition:
+                    positionData?.bufferedPosition ?? Duration.zero,
+                    onChangeEnd: _player.seek,
+                  );
+                },
+              ),
+            ],
           ),
       );
   }

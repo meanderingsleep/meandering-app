@@ -10,7 +10,7 @@ void main() {
 
     final String bucket = dotenv.env['S3_BUCKET']!;
 
-    final url = Uri.https('$bucket.s3.amazonaws.com', 'test.txt');
+    final url = Uri.https('$bucket.s3.amazonaws.com', 'Monday_classic_male.mp3');
     final client = http.Client();
     final response = await client.head(url); // using HEAD request for testing
     expect(response.statusCode, 200);
