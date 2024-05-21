@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black.withOpacity(0.2),
                         spreadRadius: 0,
                         blurRadius: 3,
-                        offset: Offset(0, -2), // changes position of shadow
+                        offset: const Offset(0, -2), // changes position of shadow
                       ),
                     ],
                   ),
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.black.withOpacity(0.2),
                                 spreadRadius: 0,
                                 blurRadius: 3,
-                                offset: Offset(0, 0), // changes position of shadow
+                                offset: const Offset(0, 0), // changes position of shadow
                               ),
                             ],
                           ),
@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                             children: [
                               Container (
-                                padding: EdgeInsets.only(bottom: 15),
+                                padding: const EdgeInsets.only(bottom: 15),
                                 child: Container (
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: Colors.black.withOpacity(0.2),
                                         spreadRadius: 0,
                                         blurRadius: 3,
-                                        offset: Offset(0, 6), // changes position of shadow
+                                        offset: const Offset(0, 6), // changes position of shadow
                                       ),
                                     ],
                                   ),
@@ -179,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Container (
-                                padding: EdgeInsets.only(bottom: 15),
+                                padding: const EdgeInsets.only(bottom: 15),
                                 child: Container (
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
@@ -188,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: Colors.black.withOpacity(0.2),
                                         spreadRadius: 0,
                                         blurRadius: 3,
-                                        offset: Offset(0, 6), // changes position of shadow
+                                        offset: const Offset(0, 6), // changes position of shadow
                                       ),
                                     ],
                                   ),
@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: Colors.black.withOpacity(0.2),
                                         spreadRadius: 0,
                                         blurRadius: 3,
-                                        offset: Offset(0, 6), // changes position of shadow
+                                        offset: const Offset(0, 6), // changes position of shadow
                                       ),
                                     ],
                                   ),
@@ -272,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black.withOpacity(0.2),
                         spreadRadius: 0,
                         blurRadius: 3,
-                        offset: Offset(0, 10), // changes position of shadow
+                        offset: const Offset(0, 10), // changes position of shadow
                       ),
                     ],
                   ),
@@ -330,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             showEmailForm = false;
                             _savePrefs();
                             Fluttertoast.showToast(
-                                msg: "You have been subscribed.",
+                                msg: 'You have been subscribed.',
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
