@@ -8,7 +8,6 @@ import 'package:rxdart/rxdart.dart';
 import 'utils.dart';
 import 'dart:convert';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
@@ -40,7 +39,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     _player = AudioPlayer();
 
     final day = getDayOfWeekString(DateTime.now());
-    audioUrl = 'https://${dotenv.env['S3_BUCKET']!}.s3.amazonaws.com/${day}_${widget.selectedStory}_${widget.selectedGender}.mp3';
+    audioUrl = 'https://net-coventry-audio.s3.amazonaws.com/${day}_${widget.selectedStory}_${widget.selectedGender}.mp3';
 
     if (widget.selectedStory == 'weather') {
       _player.setSpeed(0.84);
