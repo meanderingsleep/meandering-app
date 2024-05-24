@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <application android:label="Sleepless" android:name="${applicationName}" android:icon="@mipmap/launcher_icon">
+    <application android:label="BoreMe" android:name="${applicationName}" android:icon="@mipmap/launcher_icon">
         <activity
             android:enableOnBackInvokedCallback="true"
             android:name="com.ryanheise.audioservice.AudioServiceActivity"
