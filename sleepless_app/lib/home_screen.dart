@@ -201,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       'assets/images/boringbutton.svg',
                                     ),
                                     onPressed: () {
-                                      _selectedStory = 'initialize_boring';
+                                      _selectedStory = 'boring';
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) =>
