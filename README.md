@@ -9,7 +9,9 @@ This is the Sleepless Flutter App.
 * Install [Flutter](https://flutter.dev/)
 * Install [Android Studio](https://developer.android.com/studio) with Flutter and Dart plugins
 * Install [XCode](https://developer.apple.com/xcode/) for iOS dev
-* Create a new project for the app in Android Studio. Do this via File->Open and open the root directory of the project, 'sleepless_app/', which is one level deeper than the repository directory.
+* Clone this repo.
+* Create a new project for the app in Android Studio. Do this via File->Open and open the root directory of the cloned project from previous command, 'sleepless_app/', which is one level deeper than the repository directory.
+* Run ``` flutter create . ``` to create the ios project directories/project files.
 * Install/setup [Firebase Crashlytics/Analytics for Flutter](https://firebase.google.com/docs/crashlytics/get-started?platform=flutter)
 * See [.env_example](https://github.com/jvaleski/sleepless-app/blob/main/.env_example) for the keys required in a .env file.
   * S3_BUCKET= (currently 'net-coventry-audio')
