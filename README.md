@@ -13,6 +13,12 @@ This is the Sleepless Flutter App.
 * Create a new project for the app in Android Studio. Do this via File->Open and open the root directory of the cloned project from previous command, 'sleepless_app/', which is one level deeper than the repository directory.
 * Run ``` flutter create . ``` within the /sleepless_app project directory, to create the ios project directories/project files.
 * Install/setup [Firebase Crashlytics/Analytics for Flutter](https://firebase.google.com/docs/crashlytics/get-started?platform=flutter)
+* Open Runner in XCode, and...
+  * Project:Runner IOS Deployment Target is set to ``` 12.0 ```
+  * Target:Runner
+    * Ensure your Apple ID is setup for signing
+    * Bundle Identifier is set to ``` net.coventry.sleepless ```
+    * Background Modes includes ``` Audio ```
 * Run ``` make install ``` to make sure flutter dependencies are up-to-date
 * Run ``` flutter doctor ``` to make sure flutter's in good shape.
 
