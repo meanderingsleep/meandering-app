@@ -41,18 +41,6 @@ dev_dependencies:
   test: ^1.24.9
   integration_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.13.1"
-
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/icons/icon.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
-  web:
-    generate: true
-    image_path: "assets/icons/icon.png"
-    background_color: "3E3A6D"
-    theme_color: "5B3758"
 
 flutter:
   uses-material-design: true
