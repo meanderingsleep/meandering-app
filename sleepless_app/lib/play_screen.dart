@@ -39,7 +39,9 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     _player = AudioPlayer();
 
     final day = getDayOfWeekString(DateTime.now());
-    audioUrl = 'https://net-coventry-audio.s3.amazonaws.com/${day}_${widget.selectedStory}_${widget.selectedGender}.mp3';
+    const r2Url = String.fromEnvironment('R2_URL', defaultValue: '');
+    print(String.fromEnvironment('R2_URL'));
+    audioUrl = '$r2Url${day}_${ widget.selectedStory }_${ widget.selectedGender }.mp3';
 
     if (widget.selectedStory == 'weather') {
       _player.setSpeed(0.84);
