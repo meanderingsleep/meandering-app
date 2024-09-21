@@ -2,9 +2,10 @@ import 'package:test/test.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
-  test('S3 bucket accessible', () async
+  test('R2 bucket accessible', () async
   {
-    final url = Uri.https('net-coventry-audio.s3.amazonaws.com', 'Monday_classic_male.mp3');
+    final Uri uri = Uri.parse(const String.fromEnvironment('R2_URL'));
+    final url = Uri.https(uri.host, 'Monday_classic_male.mp3');
     final client = http.Client();
     final response = await client.head(url); // using HEAD request for testing
     expect(response.statusCode, 200);
