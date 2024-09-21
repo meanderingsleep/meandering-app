@@ -1,8 +1,8 @@
-# Sleepless App
+# Meandering Sleep App
 
 ## Intro
 
-This is the Sleepless Flutter App.
+This is the Meandering Sleep Flutter app. You can download it from the [Apple App Store](https://apps.apple.com/us/app/meandering-sleep/), or [Google Play Store](https://play.google.com/store/apps/details?id=net.coventry.sleepless).
 
 ## Dev Environment setup
 
