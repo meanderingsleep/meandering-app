@@ -43,10 +43,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     print(String.fromEnvironment('R2_URL'));
     audioUrl = '$r2Url${day}_${ widget.selectedStory }_${ widget.selectedGender }.mp3';
 
-    if (widget.selectedStory == 'weather') {
-      _player.setSpeed(0.84);
-    }
-
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
