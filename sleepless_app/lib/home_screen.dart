@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String? _selectedGender = 'male';
-  String? _selectedStory = 'classic';
+  String? _selectedStory = 'meandering';
   bool showEmailForm = true;
 
   final TextStyle _genderStyle = const TextStyle(
@@ -160,14 +160,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   child: MaterialButton(
                                     padding: const EdgeInsets.all(0.0),
-                                    key: const Key('meander'),
+                                    key: const Key('meandering'),
                                     splashColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     child: SvgPicture.asset(
                                       'assets/images/meanderingbutton.svg',
                                     ),
                                     onPressed: () {
-                                      _selectedStory = 'classic';
+                                      _selectedStory = 'meandering';
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) =>

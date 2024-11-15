@@ -8,6 +8,8 @@ import 'package:rxdart/rxdart.dart';
 import 'utils.dart';
 import 'dart:convert';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:http/http.dart' as http;
+
 
 class PlayScreen extends StatefulWidget {
   final String? selectedGender;
@@ -22,7 +24,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   bool isPlaying = false;
   late AudioPlayer _player;
 
-  String audioUrl = '';
 
   Map<String, dynamic> resourceItems = {};
   Future<void> loadJsonAsset() async {
@@ -33,21 +34,51 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     });
   }
 
+  String audioUrl = '';
+  Future<void> fetchAudioUrl() async {
+    try {
+      print("inhere");
+      final response = await http.post(
+        Uri.parse('https://gf-get-audio-url-715423864952.us-central1.run.app/get-audio-url'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'day': getDayOfWeekString(DateTime.now()),
+          'type': widget.selectedStory,
+          'gender': widget.selectedGender,
+        }),
+      );
+      print(response);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          audioUrl = data['response'];
+        });
+        print("Fetched audio URL: $audioUrl");
+
+        if (audioUrl != null && audioUrl.isNotEmpty) {
+          await _init();
+        } else {
+          print('Error: audioUrl is empty.');
+        }
+      } else {
+        print('Failed to load audio URL. Status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
+      }
+    } catch (e) {
+      print('Exception in fetchAudioUrl: $e');
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _player = AudioPlayer();
-
-    final day = getDayOfWeekString(DateTime.now());
-    const r2Url = String.fromEnvironment('R2_URL', defaultValue: '');
-    print(String.fromEnvironment('R2_URL'));
-    audioUrl = '$r2Url${day}_${ widget.selectedStory }_${ widget.selectedGender }.mp3';
-
+    fetchAudioUrl();
+    print("we in here");
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
     ));
-    _init();
   }
 
   Future<void> _init() async {
