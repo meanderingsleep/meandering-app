@@ -37,9 +37,8 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   String audioUrl = '';
   Future<void> fetchAudioUrl() async {
     try {
-      print("inhere");
       final response = await http.post(
-        Uri.parse('https://gf-get-audio-url-715423864952.us-central1.run.app/get-audio-url'),
+        Uri.parse(const String.fromEnvironment('GF_GET_AUDIO_URL')),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'day': getDayOfWeekString(DateTime.now()),
@@ -47,25 +46,28 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           'gender': widget.selectedGender,
         }),
       );
-      print(response);
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
           audioUrl = data['response'];
         });
-        print("Fetched audio URL: $audioUrl");
-
-        if (audioUrl != null && audioUrl.isNotEmpty) {
+        if (audioUrl.isNotEmpty) {
           await _init();
         } else {
-          print('Error: audioUrl is empty.');
+          if (kDebugMode) {
+            print('Error: audioUrl is empty.');
+          }
         }
       } else {
-        print('Failed to load audio URL. Status code: ${response.statusCode}');
-        print('Response body: ${response.body}');
+        if (kDebugMode) {
+          print('Failed to load audio URL. Status code: ${response.statusCode}');
+          print('Response body: ${response.body}');
+        }
       }
     } catch (e) {
-      print('Exception in fetchAudioUrl: $e');
+      if (kDebugMode) {
+        print('Exception in fetchAudioUrl: $e');
+      }
     }
   }
 
@@ -74,7 +76,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     super.initState();
     _player = AudioPlayer();
     fetchAudioUrl();
-    print("we in here");
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,

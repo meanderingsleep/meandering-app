@@ -213,37 +213,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Container (
-                                child: Container (
-                                  // padding: EdgeInsets.only(bottom: 10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        spreadRadius: 0,
-                                        blurRadius: 3,
-                                        offset: const Offset(0, 6), // changes position of shadow
-                                      ),
-                                    ],
-                                  ),
-                                  child: MaterialButton(
-                                    padding: const EdgeInsets.all(0.0),
-                                    key: const Key('port'),
-                                    splashColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    child: SvgPicture.asset(
-                                      'assets/images/portbutton.svg',
+                                // padding: EdgeInsets.only(bottom: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.2),
+                                      spreadRadius: 0,
+                                      blurRadius: 3,
+                                      offset: const Offset(0, 6), // changes position of shadow
                                     ),
-                                    onPressed: () {
-                                      _selectedStory = 'weather';
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) =>
-                                            PlayScreen(selectedGender: _selectedGender,
-                                                selectedStory: _selectedStory)),
-                                      );
-                                    },
+                                  ],
+                                ),
+                                child: MaterialButton(
+                                  padding: const EdgeInsets.all(0.0),
+                                  key: const Key('port'),
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  child: SvgPicture.asset(
+                                    'assets/images/portbutton.svg',
                                   ),
+                                  onPressed: () {
+                                    _selectedStory = 'weather';
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) =>
+                                          PlayScreen(selectedGender: _selectedGender,
+                                              selectedStory: _selectedStory)),
+                                    );
+                                  },
                                 ),
                               )
                             ]
