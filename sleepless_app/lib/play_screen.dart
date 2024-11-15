@@ -157,6 +157,16 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Image.asset('assets/images/${widget.selectedStory}_thumbnail.png'),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Text(
+                  '${widget.selectedStory}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
               // Display play/pause button and volume/speed sliders.
               ControlButtons(_player),
               // Display seek bar. Using StreamBuilder, this widget rebuilds
@@ -226,22 +236,22 @@ class ControlButtons extends StatelessWidget {
                 processingState == ProcessingState.buffering) {
               return Container(
                 margin: const EdgeInsets.all(8.0),
-                width: 64.0,
-                height: 64.0,
-                child: const CircularProgressIndicator(),
+                width: 50.0,
+                height: 50.0,
+                child: const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow)),
               );
             } else if (playing != true) {
               return IconButton(
                 color: Colors.white,
                 icon: const Icon(Icons.play_arrow),
-                iconSize: 64.0,
+                iconSize: 50.0,
                 onPressed: player.play,
               );
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
                 color: Colors.white,
                 icon: const Icon(Icons.pause),
-                iconSize: 64.0,
+                iconSize: 50.0,
                 onPressed: player.pause,
               );
             } else {
