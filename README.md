@@ -12,7 +12,7 @@ This is the Meandering Sleep Flutter app. You can download it from the [Apple Ap
 * Install [XCode](https://developer.apple.com/xcode/) for iOS dev
 * Clone this repo.
 * Create a new project for the app in Android Studio. Do this via File->Open and open the root directory of the cloned project from previous command, 'sleepless_app/', which is one level deeper than the repository directory.
-* Run ``` flutter create . ``` within the /sleepless_app project directory, to create the ios project directories/project files.
+* Run ``` flutter create --platforms=ios,android . ``` within the /sleepless_app project directory, to create the ios project directories/project files.
 * Install/setup [Firebase Crashlytics/Analytics for Flutter](https://firebase.google.com/docs/crashlytics/get-started?platform=flutter)
 * Open Runner in XCode, and...
   * Project:Runner IOS Deployment Target is set to ``` 12.0 ```
