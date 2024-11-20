@@ -13,4 +13,12 @@ void main() {
      expect(getDayOfWeekString(DateTime(2024, 1, 7)), 'Sunday');
 
   });
+
+  test('Make sure we can build audio URLs', ()
+  {
+    // DO NOT test the actual URL contents for obfuscation purposes
+    // simply test for some semblance of a URI to make sure the app is being
+    // built with the necessary environment variables
+    expect(Uri.parse(const String.fromEnvironment('GF_GET_AUDIO_URL')).hasAbsolutePath, true);
+  });
 }
