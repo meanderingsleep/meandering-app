@@ -13,6 +13,7 @@
 .history
 .svn/
 .env
+firepit-log.txt
 
 # IntelliJ related
 *.iml

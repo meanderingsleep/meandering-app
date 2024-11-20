@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
     appId: '1:19411767388:android:d3f0266b6ea91d08391699',
     messagingSenderId: '19411767388',
     projectId: 'sleepless-6bce2',
-    storageBucket: 'sleepless-6bce2.appspot.com',
+    storageBucket: 'sleepless-6bce2.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:19411767388:ios:f3c2574fbd3b8fcc391699',
     messagingSenderId: '19411767388',
     projectId: 'sleepless-6bce2',
-    storageBucket: 'sleepless-6bce2.appspot.com',
+    storageBucket: 'sleepless-6bce2.firebasestorage.app',
     iosBundleId: 'net.coventry.sleepless',
   );
 
