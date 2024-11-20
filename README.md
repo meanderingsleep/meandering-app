@@ -6,9 +6,11 @@ This is the Meandering Sleep Flutter app. You can download it from the [Apple Ap
 
 ## Dev Environment setup
 
-* the R2_URL variable needs to be defined via --dart-define flag for building/testing/running 
+* Testing has not been done with anything higher than Java version 17.0.13
+* the R2_URL variable needs to be defined via --dart-define flag for building/testing/running
 * Install [Flutter](https://flutter.dev/)
 * Install [Android Studio](https://developer.android.com/studio) with Flutter and Dart plugins
+  * If you install version 2024.2.1 or higher, you'll need to explicitly configure Flutter to use your Java 17 version. ``` flutter config --jdk-dir PATH-TO-YOUR-JAVA-INSTALLATION ```
 * Install [XCode](https://developer.apple.com/xcode/) for iOS dev
 * Clone this repo.
 * Create a new project for the app in Android Studio. Do this via File->Open and open the root directory of the cloned project from previous command, 'sleepless_app/', which is one level deeper than the repository directory.
