@@ -33,6 +33,9 @@ dependencies:
 
   audio_session: any
   rxdart: any
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.7
+  firebase_auth: ^5.3.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

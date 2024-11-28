@@ -6,6 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'blocs/auth/auth_bloc.dart';
+import 'blocs/auth/auth_event.dart';
+import 'blocs/auth/auth_state.dart';
+import 'screens/login_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -17,18 +22,28 @@ class App extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-        DefaultMaterialLocalizations.delegate,
-        DefaultWidgetsLocalizations.delegate,
-      ],
-      title: 'Sleepless',
-      theme: ThemeData(
-        fontFamily: 'Montserrat',
-        scaffoldBackgroundColor: const Color(0xFF1B1E40),
+    return BlocProvider(
+      create: (context) => AuthBloc()..add(CheckAuthStatus()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+          DefaultMaterialLocalizations.delegate,
+          DefaultWidgetsLocalizations.delegate,
+        ],
+        title: 'Sleepless',
+        theme: ThemeData(
+          fontFamily: 'Montserrat',
+          scaffoldBackgroundColor: const Color(0xFF1B1E40),
+        ),
+        home: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return const HomeScreen();
+          },
+        ),
       ),
-      home: const HomeScreen(),
     );
   }
 }

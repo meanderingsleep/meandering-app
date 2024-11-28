@@ -6,6 +6,11 @@ import 'package:email_validator/email_validator.dart';
 import '../utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sleepless_app/screens/login_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../blocs/auth/auth_bloc.dart';
+import '../blocs/auth/auth_event.dart';
+import '../blocs/auth/auth_state.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -18,7 +23,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String? _selectedGender = 'male';
   String? _selectedStory = 'meandering';
-  bool showEmailForm = true;
 
   final TextStyle _genderStyle = const TextStyle(
       color: Colors.white,
@@ -26,23 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late TextEditingController _textController;
 
-  Future<void> _loadPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      showEmailForm = !(prefs.getBool('email_submitted') ?? false);
-    });
-  }
-
-  Future<void> _savePrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      prefs.setBool('email_submitted', !showEmailForm);
-    });
-  }
-
   @override void initState() {
     _textController = TextEditingController();
-    _loadPrefs();
     super.initState();
   }
 
@@ -249,100 +238,95 @@ class _HomeScreenState extends State<HomeScreen> {
                       ]
                   ),
                 ),
-          Visibility(visible: showEmailForm, child: Column ( children: [
-                      Container (
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text('Stay up to date',
-                      style: TextStyle(
-                        color: Colors.grey.withOpacity(0.9),
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Montserrat-Bold',
-                        fontSize: 18,
-                      ),
-                  ),
-                ),
-                Container(
-                  width: 290, // Add horizontal padding to the container
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 0,
-                        blurRadius: 3,
-                        offset: const Offset(0, 10), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 65,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.5),
-                            borderRadius: const BorderRadius.horizontal(left: Radius.circular(15.0)),
-                          ),
-                          child: Form(
-                            key: const Key('email_form'),
-                            child: CupertinoTextFormFieldRow(
-                              controller: _textController,
-                              placeholder: 'Email address',
-                              placeholderStyle: const TextStyle(
-                                color: Colors.white12,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Montserrat-Bold',
-                              ),
-                              autovalidateMode:
-                              AutovalidateMode.onUserInteraction,
-                              validator: (email) =>
-                              email != null && !EmailValidator.validate(email)
-                                  ? 'Enter a valid email'
-                                  : null,
-                              decoration: const BoxDecoration(
-                                border: Border(right: BorderSide.none),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 70,
-                        height: 65,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.withOpacity(0.5),
-                          borderRadius: const BorderRadius.horizontal(right: Radius.circular(15.0)),
-                        ),
-                        child: MaterialButton(
-                          padding: EdgeInsets.zero,
-                          child: const Opacity(
-                            opacity: 0.75,
-                            child: Icon(
-                              Icons.check_circle_outline_rounded,
-                              color: Colors.yellow,
-                              size: 28,
-                            ),
-                          ),
-                          onPressed: () async {
-                            saveEmail(_textController.text);
-                            showEmailForm = false;
-                            _savePrefs();
-                            Fluttertoast.showToast(
-                                msg: 'You have been subscribed.',
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.grey[800],
-                                textColor: Colors.white,
-                                fontSize: 16.0
-                            );
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    if (state is Authenticated) {
+                      return Container(
+                        width: 290,
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context.read<AuthBloc>().add(SignOutRequested());
                           },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white30,
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Text(
+                            'Log Out',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                ]))
+                      );
+                    }
+                    return Column(
+                      children: [
+                        Container(
+                          width: 290,
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const LoginScreen(),
+                                      ),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white30,
+                                    padding: const EdgeInsets.symmetric(vertical: 16),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'Login',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                width: double.infinity,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const LoginScreen(isSignUp: true),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text(
+                                    'Create Account',
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                )
               ],
             ),
           ),
