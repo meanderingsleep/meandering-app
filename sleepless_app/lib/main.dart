@@ -11,6 +11,7 @@ import 'blocs/auth/auth_bloc.dart';
 import 'blocs/auth/auth_event.dart';
 import 'blocs/auth/auth_state.dart';
 import 'screens/login_screen.dart';
+import 'screens/main_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -40,7 +41,7 @@ class App extends StatelessWidget {
             if (state is AuthLoading) {
               return const Center(child: CircularProgressIndicator());
             }
-            return const HomeScreen();
+            return const MainScreen();
           },
         ),
       ),
