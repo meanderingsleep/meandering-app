@@ -35,7 +35,6 @@ class _MainScreenState extends State<MainScreen> {
         child: BottomNavigationBar(
           backgroundColor: const Color(0xFF1B1E40),
           type: BottomNavigationBarType.fixed,
-          enableFeedback: false,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

@@ -5,6 +5,7 @@ import 'package:sleepless_app/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../test/firebase_mock.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 
 void main() async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -83,6 +84,98 @@ void main() async {
           await tester.pumpAndSettle();
           speedDialog = find.byKey(const Key('speed'));
           expect(speedDialog, findsNothing);
+    });
+  });
+
+  group('Authentication tests', () {
+    testWidgets('should show error for invalid email format', (tester) async {
+      await tester.pumpWidget(const App());
+      
+      // Navigate to Account screen first
+      final accountTab = find.byIcon(Icons.person);
+      await tester.tap(accountTab);
+      await tester.pumpAndSettle();
+
+      // Find and tap the login button on Account screen
+      final loginButton = find.text('Log In');
+      await tester.tap(loginButton);
+      await tester.pumpAndSettle();
+
+      // Now we're on the login screen, find email field and submit button
+      final emailField = find.byKey(const Key('email_field'));
+      final submitButton = find.byKey(const Key('submit_button'));
+
+      // Enter invalid email
+      await tester.enterText(emailField, 'invalid-email');
+      
+      // Tap submit and wait for validation
+      await tester.tap(submitButton);
+      await tester.pump();
+      
+      // Look for the error message in the SnackBar
+      expect(find.text('Please enter a valid email address'), findsOneWidget);
+    });
+
+    testWidgets('should show error for weak password during signup', (tester) async {
+      await tester.pumpWidget(const App());
+      
+      // Navigate to Account screen first
+      final accountTab = find.byIcon(Icons.person);
+      await tester.tap(accountTab);
+      await tester.pumpAndSettle();
+
+      // Find and tap the login button
+      final loginButton = find.text('Log In');
+      await tester.tap(loginButton);
+      await tester.pumpAndSettle();
+
+      // Switch to signup mode
+      final switchToSignupButton = find.text('Don\'t have an account? Sign Up');
+      await tester.tap(switchToSignupButton);
+      await tester.pumpAndSettle();
+
+      // Fill in the form
+      await tester.enterText(find.byKey(const Key('email_field')), 'test@example.com');
+      await tester.enterText(find.byKey(const Key('password_field')), '123'); // weak password
+      await tester.enterText(find.byKey(const Key('confirm_password_field')), '123');
+
+      // Submit form
+      await tester.tap(find.byKey(const Key('submit_button')));
+      await tester.pumpAndSettle();
+
+      // Verify error message
+      expect(find.text('Please enter a stronger password'), findsOneWidget);
+    });
+
+    testWidgets('should show error when passwords do not match', (tester) async {
+      await tester.pumpWidget(const App());
+      
+      // Navigate to Account screen first
+      final accountTab = find.byIcon(Icons.person);
+      await tester.tap(accountTab);
+      await tester.pumpAndSettle();
+
+      // Find and tap the login button
+      final loginButton = find.text('Log In');
+      await tester.tap(loginButton);
+      await tester.pumpAndSettle();
+
+      // Switch to signup mode
+      final switchToSignupButton = find.text('Don\'t have an account? Sign Up');
+      await tester.tap(switchToSignupButton);
+      await tester.pumpAndSettle();
+
+      // Now fill in the form with mismatched passwords
+      await tester.enterText(find.byKey(const Key('email_field')), 'test@example.com');
+      await tester.enterText(find.byKey(const Key('password_field')), 'Password123!');
+      await tester.enterText(find.byKey(const Key('confirm_password_field')), 'DifferentPassword123!');
+
+      // Submit form
+      await tester.tap(find.byKey(const Key('submit_button')));
+      await tester.pumpAndSettle();
+
+      // Verify error message
+      expect(find.text('Passwords do not match'), findsOneWidget);
     });
   });
 }

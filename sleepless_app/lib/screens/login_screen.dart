@@ -92,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    key: const Key('email_field'),
                     controller: _emailController,
                     decoration: InputDecoration(
                       hintText: 'Email',
@@ -112,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                    key: const Key('password_field'),
                     controller: _passwordController,
                     decoration: InputDecoration(
                       hintText: 'Password',
@@ -134,6 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (!_isLogin) ...[
                     const SizedBox(height: 16),
                     TextFormField(
+                      key: const Key('confirm_password_field'),
                       controller: _confirmPasswordController,
                       decoration: InputDecoration(
                         hintText: 'Confirm Password',
@@ -161,6 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
+                      key: const Key('submit_button'),
                       onPressed: _submitForm,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white30,
