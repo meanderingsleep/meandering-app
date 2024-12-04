@@ -69,7 +69,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '19411767388',
     projectId: 'sleepless-6bce2',
     authDomain: 'sleepless-6bce2.firebaseapp.com',
-    storageBucket: 'sleepless-6bce2.appspot.com',
+    storageBucket: 'sleepless-6bce2.firebasestorage.app',
     measurementId: 'G-69J1PVTHSW',
   );
 
