@@ -51,10 +51,16 @@ post_install do |installer|
         'AUDIO_SESSION_MICROPHONE=0'
       ]
 
-      # Disable Crashlytics symbol upload during build
+      # Configure build settings for all targets
       if target.name == 'Runner'
+        # Disable Crashlytics symbol upload during debug builds
         config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'i386'
-        config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'
+        if config.name == 'Debug'
+          config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'
+          config.build_settings['ENABLE_BITCODE'] = 'NO'
+        else
+          config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
+        end
       end
     end
   end
