@@ -37,13 +37,20 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: net.coventry.sleepless
+      vars:
+        XCODE_WORKSPACE: "Runner.xcworkspace"
+        XCODE_SCHEME: "Runner"
       flutter: stable
       xcode: latest
       cocoapods: default
     scripts:
+      - name: Set up code signing settings
+        script: |
+          xcode-project use-profiles
       - name: Build iOS
         script: |
           flutter build ipa --release \
+            --export-options-plist=/Users/builder/export_options.plist \
             --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
     artifacts:
       - build/ios/ipa/*.ipa
