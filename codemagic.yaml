@@ -10,20 +10,12 @@ workflows:
         PACKAGE_NAME: "net.coventry.sleepless"
       flutter: stable
     scripts:
-      - name: Set up local.properties
-        script: |
-          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
-      - name: Clean and get packages
-        script: |
-          flutter clean
-          flutter packages pub get
       - name: Build APK
         script: |
           flutter build apk --release \
-          --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
+            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
-      - flutter_drive.log
     publishing:
       email:
         recipients:
@@ -32,6 +24,7 @@ workflows:
         notify:
           success: true
           failure: false
+
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m2
@@ -44,68 +37,16 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: net.coventry.sleepless
-      vars:
-        XCODE_WORKSPACE: "ios/Runner.xcworkspace"
-        XCODE_SCHEME: "Runner"
       flutter: stable
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Clean and get packages
-        script: |
-          flutter clean
-          flutter packages pub get
-      - name: Install pods
-        script: |
-          cd ios
-          pod deintegrate || true
-          rm -rf Pods
-          rm -rf Podfile.lock
-          flutter pub get
-          pod cache clean --all
-          pod install
-      - name: Configure Xcode project
-        script: |
-          cd ios
-          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier net.coventry.sleepless" Runner/Info.plist
-          plutil -replace ProvisioningStyle -string Automatic ios/Runner.xcodeproj/project.pbxproj
-          plutil -replace DevelopmentTeam -string "$TEAM_ID" ios/Runner.xcodeproj/project.pbxproj
-      - name: Set up export options
-        script: |
-          cat >> $HOME/export_options.plist << EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-              <key>method</key>
-              <string>app-store</string>
-              <key>teamID</key>
-              <string>$TEAM_ID</string>
-              <key>signingStyle</key>
-              <string>automatic</string>
-          </dict>
-          </plist>
-          EOF
-      - name: Flutter build ipa
+      - name: Build iOS
         script: |
           flutter build ipa --release \
-            --export-options-plist=$HOME/export_options.plist \
-            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL \
-            --allow-provisioning-updates
-      - name: Upload debug symbols to Firebase Crashlytics
-        script: |
-          if [ "$FCI_BUILD_TYPE" == "release" ]; then
-            echo "Uploading debug symbols to Firebase Crashlytics"
-            find "$FCI_BUILD_DIR/build/ios/archive/Runner.xcarchive/dSYMs" \
-              -name "*.dSYM" \
-              -exec "$FCI_BUILD_DIR/ios/Pods/FirebaseCrashlytics/upload-symbols" \
-              -gsp "$FCI_BUILD_DIR/ios/Runner/GoogleService-Info.plist" \
-              -p ios {} +
-          fi
+            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
     artifacts:
       - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-      - flutter_drive.log
     publishing:
       app_store_connect:
         auth: integration
