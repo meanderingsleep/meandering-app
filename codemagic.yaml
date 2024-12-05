@@ -13,8 +13,9 @@ workflows:
       - name: Set up local.properties
         script: |
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
-      - name: Get Flutter packages
+      - name: Clean and get packages
         script: |
+          flutter clean
           flutter packages pub get
       - name: Build APK
         script: |
@@ -50,12 +51,16 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Get Flutter packages
+      - name: Clean and get packages
         script: |
-          flutter pub get
+          flutter clean
+          flutter packages pub get
       - name: Install pods
         script: |
-          cd ios && pod install
+          cd ios
+          pod deintegrate
+          pod cache clean --all
+          pod install
       - name: Flutter build ipa
         script: |
           flutter build ipa --release \
