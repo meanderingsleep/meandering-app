@@ -32,12 +32,14 @@ workflows:
     name: iOS Workflow
     instance_type: mac_mini_m2
     max_build_duration: 120
-    integrations:
-      app_store_connect: codemagic
     environment:
       ios_signing:
-        distribution_type: app_store
+        distribution_type: development
         bundle_identifier: net.coventry.sleepless
+        provisioning_profiles:
+          - profile_name: "Codemagic Development Profile"
+        certificates:
+          - certificate_name: "Coventry Labs Development"
       vars:
         XCODE_WORKSPACE: "ios/Runner.xcworkspace"
         XCODE_SCHEME: "Runner"
