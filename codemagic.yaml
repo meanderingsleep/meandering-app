@@ -95,7 +95,9 @@ workflows:
             -archivePath build/Runner.xcarchive \
             archive \
             -allowProvisioningUpdates \
-            CODE_SIGN_STYLE=Automatic
+            CODE_SIGN_STYLE=Automatic \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            -verbose | xcpretty --color --simple
       - name: Upload debug symbols to Firebase Crashlytics
         script: |
           if [ "$FCI_BUILD_TYPE" == "release" ]; then
