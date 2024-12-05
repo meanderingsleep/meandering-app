@@ -64,10 +64,24 @@ workflows:
           flutter pub get
           pod cache clean --all
           pod install
+      - name: Set up export options
+        script: |
+          cat >> ~/export_options.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>app-store</string>
+              <key>teamID</key>
+              <string>$TEAM_ID</string>
+          </dict>
+          </plist>
+          EOF
       - name: Flutter build ipa
         script: |
           flutter build ipa --release \
-            --export-options-plist=/Users/builder/export_options.plist \
+            --export-options-plist=~/export_options.plist \
             --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
       - name: Upload debug symbols to Firebase Crashlytics
         script: |
