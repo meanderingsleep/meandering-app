@@ -4,13 +4,8 @@ workflows:
     instance_type: mac_mini_m2
     max_build_duration: 120
     environment:
-      android_signing:
-        - keystore_reference
-      groups:
-        - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS)
       vars:
         PACKAGE_NAME: "net.coventry.sleepless"
-        GOOGLE_PLAY_TRACK: "alpha"
       flutter: stable
     scripts:
       - name: Set up local.properties
@@ -19,15 +14,11 @@ workflows:
       - name: Get Flutter packages
         script: |
           flutter packages pub get
-      - name: Build AAB with Flutter
+      - name: Build APK
         script: |
-          BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
-          flutter build appbundle --release \
-            --build-name=1.0.$BUILD_NUMBER \
-            --build-number=$BUILD_NUMBER
+          flutter build apk --release
     artifacts:
-      - build/**/outputs/**/*.aab
-      - build/**/outputs/**/mapping.txt
+      - build/app/outputs/flutter-apk/app-release.apk
       - flutter_drive.log
     publishing:
       email:
@@ -37,10 +28,6 @@ workflows:
         notify:
           success: true
           failure: false
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: $GOOGLE_PLAY_TRACK
-        submit_as_draft: true
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m2
