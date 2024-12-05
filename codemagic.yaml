@@ -75,6 +75,8 @@ workflows:
               <string>app-store</string>
               <key>teamID</key>
               <string>$TEAM_ID</string>
+              <key>signingStyle</key>
+              <string>automatic</string>
           </dict>
           </plist>
           EOF
@@ -82,7 +84,18 @@ workflows:
         script: |
           flutter build ipa --release \
             --export-options-plist=$HOME/export_options.plist \
-            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
+            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL \
+            --no-codesign
+      - name: Xcode build
+        script: |
+          cd ios
+          xcodebuild -workspace Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -archivePath build/Runner.xcarchive \
+            archive \
+            -allowProvisioningUpdates \
+            CODE_SIGN_STYLE=Automatic
       - name: Upload debug symbols to Firebase Crashlytics
         script: |
           if [ "$FCI_BUILD_TYPE" == "release" ]; then
