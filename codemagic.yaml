@@ -64,6 +64,12 @@ workflows:
           flutter pub get
           pod cache clean --all
           pod install
+      - name: Configure Xcode project
+        script: |
+          cd ios
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier net.coventry.sleepless" Runner/Info.plist
+          plutil -replace ProvisioningStyle -string Automatic ios/Runner.xcodeproj/project.pbxproj
+          plutil -replace DevelopmentTeam -string "$TEAM_ID" ios/Runner.xcodeproj/project.pbxproj
       - name: Set up export options
         script: |
           cat >> $HOME/export_options.plist << EOF
@@ -84,7 +90,8 @@ workflows:
         script: |
           flutter build ipa --release \
             --export-options-plist=$HOME/export_options.plist \
-            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
+            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL \
+            --allow-provisioning-updates
       - name: Upload debug symbols to Firebase Crashlytics
         script: |
           if [ "$FCI_BUILD_TYPE" == "release" ]; then
