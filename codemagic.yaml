@@ -58,7 +58,10 @@ workflows:
       - name: Install pods
         script: |
           cd ios
-          pod deintegrate
+          pod deintegrate || true
+          rm -rf Pods
+          rm -rf Podfile.lock
+          flutter pub get
           pod cache clean --all
           pod install
       - name: Flutter build ipa
