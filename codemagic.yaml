@@ -32,14 +32,12 @@ workflows:
     name: iOS Workflow
     instance_type: mac_mini_m2
     max_build_duration: 120
+    integrations:
+      app_store_connect: codemagic
     environment:
       ios_signing:
-        distribution_type: development
+        distribution_type: app_store
         bundle_identifier: net.coventry.sleepless
-        provisioning_profiles:
-          - profile_name: "Codemagic Development Profile"
-        certificates:
-          - certificate_name: "Coventry Labs Development"
       vars:
         XCODE_WORKSPACE: "ios/Runner.xcworkspace"
         XCODE_SCHEME: "Runner"
@@ -47,9 +45,6 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Set up code signing settings on Xcode project
-        script: |
-          xcode-project use-profiles
       - name: Get Flutter packages
         script: |
           flutter packages pub get
@@ -75,6 +70,12 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
     publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_ID
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
+        submit_to_app_store: false
       email:
         recipients:
           - loganvaleski@gmail.com
