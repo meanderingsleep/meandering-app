@@ -50,9 +50,12 @@ workflows:
       - name: Increment build number
         script: |
           #!/bin/sh
-          cd $CM_BUILD_DIR
-          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$BUNDLE_ID")
+          cd ios
+          # Get the latest build number
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "net.coventry.sleepless")
           NEXT_BUILD_NUMBER=$((LATEST_BUILD_NUMBER + 1))
+          # Initialize versioning system
+          agvtool new-marketing-version 0.2.0
           agvtool new-version -all $NEXT_BUILD_NUMBER
       - name: Run unit tests
         script: |
