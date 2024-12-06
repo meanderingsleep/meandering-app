@@ -47,6 +47,13 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
+      - name: Increment build number
+        script: |
+          #!/bin/sh
+          cd $CM_BUILD_DIR
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$BUNDLE_ID")
+          NEXT_BUILD_NUMBER=$((LATEST_BUILD_NUMBER + 1))
+          agvtool new-version -all $NEXT_BUILD_NUMBER
       - name: Run unit tests
         script: |
           flutter test --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
