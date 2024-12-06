@@ -72,19 +72,23 @@ workflows:
           flutter build ipa --release \
             --export-options-plist=/Users/builder/export_options.plist \
             --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
-      - name: Install Firebase CLI
-        script: |
-          curl -sL https://firebase.tools | bash
-      - name: Upload iOS debug symbols
-        script: |
-          curl -sL https://firebase.tools | bash
-          cd ios
-          firebase crashlytics:symbols:upload \
-            --app=1:19411767388:ios:f3c2574fbd3b8fcc391699 \
-            ../build/ios/Release-iphoneos
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
+      scripts:
+        - name: Upload debug symbols to Firebase Crashlytics
+          script: | 
+            echo "Find build artifacts"
+            dsymPath=$(find $CM_BUILD_DIR/build/ios/archive/Runner.xcarchive -name "*.dSYM" | head -1)
+            if [[ -z ${dsymPath} ]]
+            then
+              echo "No debug symbols were found, skip publishing to Firebase Crashlytics"
+            else
+              echo "Publishing debug symbols from $dsymPath to Firebase Crashlytics"
+              ls -d -- ios/Pods/*
+              $CM_BUILD_DIR/ios/Pods/FirebaseCrashlytics/upload-symbols \
+                -gsp ios/Runner/GoogleService-Info.plist -p ios $dsymPath
+            fi
       app_store_connect:
         auth: integration
         submit_to_testflight: true
