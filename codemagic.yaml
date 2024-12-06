@@ -10,6 +10,9 @@ workflows:
         PACKAGE_NAME: "net.coventry.sleepless"
       flutter: stable
     scripts:
+      - name: Run unit tests
+        script: |
+          flutter test --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
       - name: Build APK
         script: |
           flutter build apk --release \
@@ -44,6 +47,9 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
+      - name: Run unit tests
+        script: |
+          flutter test --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
       - name: Set up code signing settings
         script: |
           xcode-project use-profiles
