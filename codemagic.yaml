@@ -74,7 +74,11 @@ workflows:
             --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
       - name: Upload iOS debug symbols
         script: |
-          cd ios && firebase crashlytics:symbols --app=1:19411767388:ios:f3c2574fbd3b8fcc391699
+          cd ios && /usr/local/lib/ruby/gems/2.7.0/bin/firebase crashlytics:upload-symbols \
+            -n net.coventry.sleepless \
+            -p ios \
+            -v $NEXT_BUILD_NUMBER \
+            build/ios/Release-iphoneos
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
