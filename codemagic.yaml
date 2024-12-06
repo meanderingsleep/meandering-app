@@ -6,6 +6,7 @@ workflows:
     environment:
       groups:
         - production
+        - google_credentials
       vars:
         PACKAGE_NAME: "net.coventry.sleepless"
       flutter: stable
