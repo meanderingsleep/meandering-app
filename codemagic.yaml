@@ -57,10 +57,23 @@ workflows:
         script: |
           #!/bin/sh
           cd ios
-          # Get the latest build number
+          # Get the latest version and build number
+          LATEST_VERSION=$(app-store-connect get-latest-testflight-version "net.coventry.sleepless")
           LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "net.coventry.sleepless")
+          
+          # Increment the patch version (e.g., 0.1.1 -> 0.1.2)
+          MAJOR=$(echo $LATEST_VERSION | cut -d. -f1)
+          MINOR=$(echo $LATEST_VERSION | cut -d. -f2)
+          PATCH=$(echo $LATEST_VERSION | cut -d. -f3)
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+          
+          # Set the new version and build number
           NEXT_BUILD_NUMBER=$((LATEST_BUILD_NUMBER + 1))
+          agvtool new-marketing-version $NEW_VERSION
           agvtool new-version -all $NEXT_BUILD_NUMBER
+          
+          echo "Updating version to $NEW_VERSION ($NEXT_BUILD_NUMBER)"
       - name: Run unit tests
         script: |
           flutter test --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
