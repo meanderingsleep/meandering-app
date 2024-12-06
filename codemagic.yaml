@@ -24,9 +24,6 @@ workflows:
         script: |
           flutter build apk --release \
             --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
-      - name: Upload Android debug symbols
-        script: |
-          cd android && ./gradlew crashlyticsUploadSymbolsRelease
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
       - build/app/outputs/bundle/release/app-release.aab
@@ -38,6 +35,10 @@ workflows:
         notify:
           success: true
           failure: false
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: $GOOGLE_PLAY_TRACK
+        submit_as_draft: true
 
   ios-workflow:
     name: iOS Workflow
