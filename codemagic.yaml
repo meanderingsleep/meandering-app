@@ -74,7 +74,7 @@ workflows:
           flutter build ipa --release \
             --build-name=1.0.0 \
             --build-number=$(($(app-store-connect get-latest-testflight-build-number "$APP_ID") + 1)) \
-            --export-options-plist=/Users/builder/export_options.plist \ 
+            --export-options-plist=/Users/builder/export_options.plist \
             --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
     artifacts:
       - build/ios/ipa/*.ipa
