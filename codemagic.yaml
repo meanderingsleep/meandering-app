@@ -18,11 +18,9 @@ workflows:
           flutter test --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
       - name: Build AAB with Flutter
         script: |
-          BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
           flutter build appbundle --release \
-            --build-name=1.0.$BUILD_NUMBER \
-            --build-number=$BUILD_NUMBER \
-            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
+            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL \
+            --debug-symbols
       - name: Build APK with Flutter
         script: |
           flutter build apk --release \
