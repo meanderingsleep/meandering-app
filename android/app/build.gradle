@@ -33,12 +33,12 @@ android {
         multiDexEnabled true
         minSdkVersion 23
         targetSdkVersion 34
-        versionCode 7
+        versionCode 8
         versionName "0.1.1"
     }
 
     signingConfigs {
-        release {
+        debug {
             if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
                 storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
                 storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
