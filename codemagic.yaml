@@ -19,8 +19,7 @@ workflows:
       - name: Build AAB with Flutter
         script: |
           flutter build appbundle --release \
-            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL \
-            --debug-symbols
+            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
       - name: Build APK with Flutter
         script: |
           flutter build apk --release \
