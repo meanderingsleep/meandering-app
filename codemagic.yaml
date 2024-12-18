@@ -13,9 +13,6 @@ workflows:
         PACKAGE_NAME: "net.coventry.sleepless"
       flutter: stable
     scripts:
-      - name: Set up local.properties
-        script: |
-          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
       - name: Run unit tests
         script: |
           flutter test --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
