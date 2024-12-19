@@ -19,7 +19,12 @@ workflows:
       - name: Build AAB with Flutter
         script: |
           flutter build appbundle --release \
-            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL
+            --dart-define=GF_GET_AUDIO_URL=$GF_GET_AUDIO_URL \
+            --split-debug-info=build/symbols
+      - name: Archive debug symbols
+        script: |
+          echo "Archiving debug symbols..."
+          zip -r build/symbols.zip build/symbols
       - name: Build APK with Flutter
         script: |
           flutter build apk --release \
@@ -27,6 +32,7 @@ workflows:
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
       - build/app/outputs/bundle/release/app-release.aab
+      - build/symbols.zip
     publishing:
       email:
         recipients:
